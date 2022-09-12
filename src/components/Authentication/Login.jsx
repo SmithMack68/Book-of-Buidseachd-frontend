@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { baseUrl, headers } from '../../Globals';
-  
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ loginUser }) => { 
+const Login = ({ loginUser, loggedIn }) => { 
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
-  
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      if( loggedIn){
+         navigate('/spells')
+      }
+    }, [loggedIn])
+
     const handleSubmit = (e) => {
         e.preventDefault()
     
@@ -24,6 +31,7 @@ const Login = ({ loginUser }) => {
            .then(data => {
               loginUser(data.user)
               localStorage.setItem('jwt', data.token)
+              navigate('/spells')
            })
      }
   

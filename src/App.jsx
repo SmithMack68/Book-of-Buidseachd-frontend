@@ -5,6 +5,7 @@ import Home from './components/static/Home';
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 import { baseUrl, headers, getToken } from './Globals'
+import SpellList from './components/Spells/SpellList';
 
 const App =() => {
   const [ currentUser, setCurrentUser ] = useState({})
@@ -44,8 +45,9 @@ const App =() => {
      <Navbar loggedIn={ loggedIn } logoutUser={ logoutUser }/>
      <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/signup" element={<Signup loginUser={ loginUser }/>} />
-      <Route path="/login" element={<Login loginUser={ loginUser } />} />
+      <Route path="/signup" element={<Signup loginUser={ loginUser } loggedIn={ loggedIn }/>} />
+      <Route path="/login" element={<Login loginUser={ loginUser } loggedIn={ loggedIn }/>} />
+      <Route path="/spells" element={<SpellList loggedIn={ loggedIn }/>} />
      </Routes>
   </Router>
   );

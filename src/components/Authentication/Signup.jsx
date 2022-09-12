@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { baseUrl, headers } from '../../Globals';
+import { useNavigate } from "react-router-dom";
 
 
-
-const Signup = ({ loginUser }) => {
+const Signup = ({ loginUser, loggedIn }) => {
    //  const [ form, setForm ] = useState({
    //    username: '',
    //    creature_type: '',
@@ -14,6 +14,13 @@ const Signup = ({ loginUser }) => {
    //  const [ creature_type, setCreature_type ] = useState('')
    //  const [ age, setAge ] = useState('')
     const [ password, setPassword ] = useState('')
+    const navigate = useNavigate()
+
+   useEffect(() => {
+      if( loggedIn ){
+         navigate('/spells')
+      }
+   }, [loggedIn]) 
 
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -35,6 +42,7 @@ const Signup = ({ loginUser }) => {
          .then(data => {
             loginUser(data.user)
             localStorage.setItem('jwt', data.token)
+            navigate('/spells')
          })
 
     }
