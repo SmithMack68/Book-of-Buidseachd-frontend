@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { baseUrl, headers } from '../../Globals'
+import React, { useState } from 'react';
+import { baseUrl, headers } from '../../Globals';
 
 
 
@@ -37,14 +37,6 @@ const Signup = ({ loginUser }) => {
             localStorage.setItem('jwt', data.token)
          })
 
-      // fetch(baseUrl + '/users', {
-      //    method: "POST",
-      //    headers: {
-      //       'Content-Type': 'application/json',
-      //       'Accept': 'application/json'
-      //    },
-      //    body: JSON.stringify(strongParams)
-      // })
     }
 
     
