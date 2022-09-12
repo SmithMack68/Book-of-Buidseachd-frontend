@@ -1,14 +1,37 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  return (
-    <div>
-        <ul>
+const Navbar = ({ loggedIn, logoutUser }) => {
+
+  const loggedOutLinks = ( )=> {
+    return(
+      <ul>
             <li><Link to="/">Homepage</Link></li>
             <li><Link to="/signup">Signup</Link></li>
             <li><Link to="/login">Login</Link></li>
         </ul>
+    )
+  }
+
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    logoutUser()
+  }
+
+  const loggedInLinks = () => {
+    return (
+      <ul>
+            <li><Link to="/">Homepage</Link></li>
+            <button onClick={ handleLogout }>Logout</button>
+        </ul>
+    )
+  }
+ 
+  
+  return (
+    <div>
+        { loggedIn ? loggedInLinks() : loggedOutLinks() }
     </div>
   )
 }
