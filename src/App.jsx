@@ -36,13 +36,15 @@ const App =() => {
           .then(resp => resp.json())
           .then(user => loginUser(user))
       }
-    }, [])
+
+
+
+    }, [loggedIn])
 
 
   return (
    <Router>
-    { loggedIn ? <h1>You are logged in</h1> : null }
-     <Navbar loggedIn={ loggedIn } logoutUser={ logoutUser }/>
+     <Navbar loggedIn={ loggedIn } logoutUser={ logoutUser } currentUser={ currentUser}/>
      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup loginUser={ loginUser } loggedIn={ loggedIn }/>} />
