@@ -9,6 +9,7 @@ import SpellList from './components/Spells/SpellList';
 
 const App =() => {
   const [ currentUser, setCurrentUser ] = useState({})
+  const [ spells, setSpells ] = useState([])
   const [ loggedIn, setLoggedIn ] = useState(false)
 
   const loginUser = (user) => {
@@ -37,7 +38,16 @@ const App =() => {
           .then(user => loginUser(user))
       }
 
-
+      if(loggedIn) {
+        fetch(baseUrl + '/spells', {
+          headers: {
+            ...headers,
+            ...getToken()
+          }
+        })
+          .then(resp => resp.json())
+          .then(spells => setSpells(spells))
+      }
 
     }, [loggedIn])
 
@@ -49,7 +59,7 @@ const App =() => {
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup loginUser={ loginUser } loggedIn={ loggedIn }/>} />
       <Route path="/login" element={<Login loginUser={ loginUser } loggedIn={ loggedIn }/>} />
-      <Route path="/spells" element={<SpellList loggedIn={ loggedIn }/>} />
+      <Route path="/spells" element={<SpellList loggedIn={ loggedIn } spells= { spells }/>} />
      </Routes>
   </Router>
   );
