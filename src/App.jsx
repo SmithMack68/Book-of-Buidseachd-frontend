@@ -6,6 +6,7 @@ import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 import { baseUrl, headers, getToken } from './Globals'
 import SpellList from './components/Spells/SpellList';
+import Spell from './components/Spells/Spell';
 
 const App =() => {
   const [ currentUser, setCurrentUser ] = useState({})
@@ -60,6 +61,7 @@ const App =() => {
       <Route path="/signup" element={<Signup loginUser={ loginUser } loggedIn={ loggedIn }/>} />
       <Route path="/login" element={<Login loginUser={ loginUser } loggedIn={ loggedIn }/>} />
       <Route path="/spells" element={<SpellList loggedIn={ loggedIn } spells= { spells }/>} />
+      <Route path="/spells/:id" element={<Spell loggedIn={ loggedIn } spells= { spells }/>} />
      </Routes>
   </Router>
   );
