@@ -15,7 +15,7 @@ const SpellList = ({ loggedIn, spells }) => {
   
   return (
     <div>
-        <h1>Spells</h1>
+        <h1 style={{fontFamily: 'cursive', textAlign: "center", fontSize: 45}}>Spells</h1>
         { spellCards }
     </div>
   )
