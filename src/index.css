@@ -17,3 +17,7 @@ code {
   background-size: cover;
   position: initial;
 } */
+
+body {
+  background-color: rgb(101, 129, 129);
+}
