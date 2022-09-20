@@ -11,7 +11,7 @@ const Spell = ({ spells }) => {
         setSpell(sp);
     }, [id, spells])
    
-
+console.log(spell.image)
   return (
       <div className='card' style={{ textAlign: 'center'}}>
         <h2 style={{fontFamily: "cursive"}}>{ spell.name }</h2>
