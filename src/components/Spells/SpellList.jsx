@@ -9,15 +9,16 @@ const SpellList = ({ loggedIn, spells }) => {
     if( !loggedIn ) {
       navigate('/login')
     }
-  },  [loggedIn])
+  },  [loggedIn, navigate])
 
   const spellCards = spells.map(spell => < SpellCards key={ spell.id } spell={ spell }/>)
   
   return (
-    <div>
-        <h1 style={{fontFamily: 'cursive', textAlign: "center", fontSize: 45}}>Spells</h1>
+    <div className='cards'>
+       <h1 style={{fontFamily: 'cursive', textAlign: 'center', fontSize: 150}}>Spells</h1>
         { spellCards }
     </div>
+  
   )
 }
 

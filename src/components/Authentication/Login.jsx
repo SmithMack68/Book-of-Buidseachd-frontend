@@ -11,7 +11,7 @@ const Login = ({ loginUser, loggedIn }) => {
       if( loggedIn){
          navigate('/spells')
       }
-    }, [loggedIn])
+    }, [loggedIn, navigate])
 
     const handleSubmit = (e) => {
         e.preventDefault()
