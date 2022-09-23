@@ -41,7 +41,7 @@ const Signup = ({ loginUser, loggedIn }) => {
          .then(resp => resp.json())
          .then(data => {
             loginUser(data.user)
-            localStorage.setItem('jwt', data.token)
+            // localStorage.setItem('jwt', data.token)
             navigate('/spells')
          })
 

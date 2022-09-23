@@ -7,8 +7,11 @@ import Login from './components/Authentication/Login';
 import { baseUrl, headers, getToken } from './Globals'
 import SpellList from './components/Spells/SpellList';
 import Spell from './components/Spells/Spell';
+import { getCurrentUser } from './actions/auth';
+
 
 const App =() => {
+  // const [ currentUser, setCurrentUser ] = useState(null)
   const [ currentUser, setCurrentUser ] = useState({})
   const [ spells, setSpells ] = useState([])
   const [ loggedIn, setLoggedIn ] = useState(false)
@@ -21,8 +24,17 @@ const App =() => {
   const logoutUser = () => {
     setCurrentUser({})
     setLoggedIn(false)
-    localStorage.removeItem('jwt')
+    // localStorage.removeItem('jwt')
   }
+  // const handleCurrentUser = (user) => {
+  //   if(user.username) {
+  //   setCurrentUser(user)
+  //   setLoggedIn(true)
+  //   }
+  // }
+    // useEffect(() => {
+    //   getCurrentUser(handleCurrentUser)
+    // }, [])
 
     useEffect(() => {
       const token = localStorage.getItem('jwt')
