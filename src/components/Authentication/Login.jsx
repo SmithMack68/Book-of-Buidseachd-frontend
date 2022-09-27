@@ -1,58 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { baseUrl, headers } from '../../Globals';
+import React, { useState } from 'react';
+import { headers } from '../../Globals';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ loginUser, loggedIn }) => { 
-    const [ username, setUsername ] = useState('')
-    const [ password, setPassword ] = useState('')
+
+const Login = ({ updateUser}) => { 
+    const [form, setForm ] = useState({
+         username: '',
+         password: ''
+    })
+    const [ erros, setErrors ] = useState([])
     const navigate = useNavigate()
 
-    useEffect(() => {
-      if( loggedIn){
-         navigate('/spells')
-      }
-    }, [loggedIn, navigate])
+    const {username, password} = form
 
     const handleSubmit = (e) => {
         e.preventDefault()
-    
-  
-      const strongParams = {
+      const user = {
               username,
               password
            }
       
-        fetch(baseUrl + '/login', {
+        fetch('/login', {
            method: "POST",
            headers,
-           body: JSON.stringify(strongParams)
+           body: JSON.stringify(user)
         })
-           .then(resp => resp.json())
-           .then(data => {
-              loginUser(data.user)
-              localStorage.setItem('jwt', data.token)
-              navigate('/spells')
-           })
+           .then(resp => {
+            if(resp.ok){
+               resp.json().then(user => {
+                  updateUser(user)
+            //   localStorage.setItem('jwt', data.token)
+                  navigate(`/users/${user.id}`)
+               })
+            }else {
+               resp.json().then(json => setErrors(json.errors))
+            }
+         })
+   
+     }  
+
+     const handleChange = (e) => {
+      const { name, value } = e.target 
+      setForm({ ...form, [name]: value})
      }
-  
         
     return (
       <div>
           <h1>Login</h1>
           <form onSubmit={ handleSubmit }>
               <div>
-                 <label htmlFor="username">Username: </label> 
-                 <input type="text" name="username" id="username" value={ username } onChange={ e => setUsername(e.target.value) }/>
+                 <label>Username: </label> 
+                 <input 
+                 type="text" 
+                 name="username" 
+               //   id="username" 
+                 value={ username } 
+                 onChange={ handleChange }/>
               </div>
               <div>
-                 <label htmlFor="password">Password: </label> 
-                 <input type="password" name="password" id="password" value= { password } onChange= { e => setPassword(e.target.value)}/>
+                 <label>Password: </label> 
+                 <input 
+                 type="password" 
+                 name="password" 
+               //   id="password" 
+                 value= { password } 
+                 onChange= { handleChange }/>
               </div>
               <input type="submit" value="Login"/>
           </form>
+          {/* {errors? <div>{errors}</div>:null} */}
       </div>
     )
   }
   
 
 export default Login
+
+
+//  useEffect(() => {
+   //    if( loggedIn) {
+   //       navigate('/spells')
+   //    }
+   //  }, [loggedIn, navigate])

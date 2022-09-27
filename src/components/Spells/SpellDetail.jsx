@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 
-const Spell = ({ spells }) => {
-    const [ spell, setSpell ] = useState({})
-    const { id } = useParams()
+const SpellDetail = () => {
+    const [ spell, setSpell ] = useState([])
+    // const [errors, setErrors ] = useState(false)
+    const params = useParams()
 
     useEffect(() => {
-        const sp = spells.find(sp => sp.id.toString() === id)
-        setSpell(sp);
-    }, [id, spells])
+      fetch(`/spells/${params.id}`)
+      .then(resp => resp.json())
+      .then(spell => setSpell(spell))
+    }, [params.id])
+
+   
    
 
   return (
@@ -25,4 +29,4 @@ const Spell = ({ spells }) => {
   )
 }
 
-export default Spell
+export default SpellDetail

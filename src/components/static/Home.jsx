@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,9 +12,19 @@ const Home = () => {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
   }
+  const navigate = useNavigate()
+
+  const navigateSignup = () => {
+    navigate('/signup')
+  }
+  const navigateLogin = () => {
+    navigate('/login')
+  }
+
   return (
     <div style= { myStyle } >
-      <h1 style={{fontFamily: 'cursive', textAlign: 'center', color: 'lightgray', textShadow: '-1px 0 black', marginTop:'-100px'}}>The Book <br></br>of <br></br>Buidseachd</h1>
+      <h1 style={{fontFamily: 'cursive', textAlign: 'center', color: 'whitesmoke', textShadow: '-4px 0 black', marginTop:'-100px'}}>The Book <br></br>of <br></br>Buidseachd</h1>
+      <button  onClick={ navigateSignup } style={{ width: 150, height: 45, fontFamily: 'cursive', fontSize: 25}}>Signup</button><button onClick={ navigateLogin } style={{ width: 150, height: 45, fontFamily: 'cursive', fontSize: 25}}>Login</button>
     </div>
   )
 }

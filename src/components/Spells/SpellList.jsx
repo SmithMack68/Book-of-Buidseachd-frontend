@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+// import { useNavigate } from 'react-router-dom'
 import SpellCards from './SpellCards'
 
-const SpellList = ({ loggedIn, spells }) => {
-  const navigate = useNavigate()
+const SpellList = ({  spells }) => {
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    if( !loggedIn ) {
-      navigate('/login')
-    }
-  },  [loggedIn, navigate])
+  // useEffect(() => {
+  //   if( !loggedIn ) {
+  //     navigate('/login')
+  //   }
+  // },  [loggedIn, navigate])
 
-  const spellCards = spells.map(spell => < SpellCards key={ spell.id } spell={ spell }/>)
+  const spellCards = spells.map(spell => <SpellCards key={ spell.id } spell={ spell }/>)
   
   return (
     <div className='cards'>

@@ -4,79 +4,102 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/static/Home';
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
-import { baseUrl, headers, getToken } from './Globals'
+// import { headers } from './Globals'
 import SpellList from './components/Spells/SpellList';
-import Spell from './components/Spells/Spell';
-import { getCurrentUser } from './actions/auth';
+import SpellDetail from './components/Spells/SpellDetail';
+// import { getCurrentUser } from './actions/auth';
 
 
-const App =() => {
-  // const [ currentUser, setCurrentUser ] = useState(null)
-  const [ currentUser, setCurrentUser ] = useState({})
+const App = () => {
+  const [ currentUser, setCurrentUser ] = useState("")
   const [ spells, setSpells ] = useState([])
-  const [ loggedIn, setLoggedIn ] = useState(false)
+  const [errors, setErrors] = useState(false)
 
-  const loginUser = (user) => {
-    setCurrentUser(user)
-    setLoggedIn(true)
-  }
+  useEffect(() => {
+    fetchSpells()
+  }, [])
 
-  const logoutUser = () => {
-    setCurrentUser({})
-    setLoggedIn(false)
-    // localStorage.removeItem('jwt')
-  }
-  // const handleCurrentUser = (user) => {
-  //   if(user.username) {
-  //   setCurrentUser(user)
-  //   setLoggedIn(true)
-  //   }
-  // }
-    // useEffect(() => {
-    //   getCurrentUser(handleCurrentUser)
-    // }, [])
-
-    useEffect(() => {
-      const token = localStorage.getItem('jwt')
-      if(token && !loggedIn) {
-        //fetch to rails backend
-        fetch(baseUrl + '/get-current-user', {
+ const fetchSpells = () => {
+  fetch('/spells', {
           method: "GET",
-          headers: {
-            ...headers,
-            ...getToken()
-          }
-        })
-          .then(resp => resp.json())
-          .then(user => loginUser(user))
-      }
-
-      if(loggedIn) {
-        fetch(baseUrl + '/spells', {
-          headers: {
-            ...headers,
-            ...getToken()
-          }
+          headers,
         })
           .then(resp => resp.json())
           .then(spells => setSpells(spells))
       }
 
-    }, [loggedIn])
 
+//     fetch('/spells')
+//     .then(resp => {
+//       if(resp.ok){
+//         resp.json().then(setSpells)
+//       }else {
+//         resp.json().then(data => setErrors(data.error))
+//       }
+//     })
+//  }
 
+ const updateUser = (user) => setCurrentUser(user)
+
+//  if(errors) return <h1>{errors}</h1>
   return (
    <Router>
-     <Navbar loggedIn={ loggedIn } logoutUser={ logoutUser } currentUser={ currentUser}/>
+     <Navbar  currentUser={ currentUser} updateUser={ updateUser}/>
      <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/signup" element={<Signup loginUser={ loginUser } loggedIn={ loggedIn }/>} />
-      <Route path="/login" element={<Login loginUser={ loginUser } loggedIn={ loggedIn }/>} />
-      <Route path="/spells" element={<SpellList loggedIn={ loggedIn } spells= { spells }/>} />
-      <Route path="/spells/:id" element={<Spell loggedIn={ loggedIn } spells= { spells }/>} />
+      <Route path="/signup" element={<Signup updateUser={ updateUser}/>} />
+      <Route path="/login" element={<Login updateUser={ updateUser}/>} />
+      <Route path="/spells" element={<SpellList />} />
+      <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
      </Routes>
   </Router>
   );
 }
 
 export default App;
+
+// In first useEffect to use JWT
+ // const token = localStorage.getItem('jwt')
+      // if(token && !loggedIn) {
+
+       // const loginUser = (user) => {
+  //   setCurrentUser(user)
+  //   setLoggedIn(true)
+  // }
+
+  // const logoutUser = () => {
+  //   setCurrentUser({})
+  //   setLoggedIn(false)
+  //   // localStorage.removeItem('jwt')
+  // }
+  // const handleCurrentUser = (user) => {
+  //   if(user.username) {
+  //   setCurrentUser(user)
+  //   setLoggedIn(true)
+  //   }
+  // }
+  //   useEffect(() => {
+  //     setCurrentUser(handleCurrentUser)
+  //   }, [])
+
+    // useEffect(() => {
+    //     //fetch to rails backend
+    //     if(!loggedIn) {
+    //     fetch('/current-user', {
+    //       method: "GET",
+    //       headers,
+    //     })
+    //       .then(resp => resp.json())
+    //       .then(user => loginUser(user))
+    //   }
+
+    //   if(loggedIn) {
+    //     fetch('/spells', {
+    //       method: "GET",
+    //       headers,
+    //     })
+    //       .then(resp => resp.json())
+    //       .then(spells => setSpells(spells))
+    //   }
+
+    // }, [loggedIn])

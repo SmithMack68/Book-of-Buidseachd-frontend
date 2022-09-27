@@ -7,7 +7,7 @@ const Navbar = ({ loggedIn, logoutUser, currentUser }) => {
   const loggedOutLinks = ( )=> {
     return(
       <ul>
-            <li><Link to="/">Homepage</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/signup">Signup</Link></li>
             <li><Link to="/login">Login</Link></li>
         </ul>

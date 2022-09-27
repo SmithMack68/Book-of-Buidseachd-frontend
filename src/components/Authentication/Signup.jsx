@@ -1,77 +1,103 @@
-import React, { useState, useEffect } from 'react';
-import { baseUrl, headers } from '../../Globals';
+import React, { useState } from 'react';
+import { headers } from '../../Globals';
 import { useNavigate } from "react-router-dom";
 
 
-const Signup = ({ loginUser, loggedIn }) => {
-   //  const [ form, setForm ] = useState({
-   //    username: '',
-   //    creature_type: '',
-   //    age: '',
-   //    paswword: ''
-   //  })
-    const [ username, setUsername ] = useState('')
-   //  const [ creature_type, setCreature_type ] = useState('')
-   //  const [ age, setAge ] = useState('')
-    const [ password, setPassword ] = useState('')
+const Signup = ({ updateUser }) => {
+    const [ form, setForm ] = useState({
+      username: '',
+      creature_type: '',
+      age: '',
+      paswword: ''
+    })
+    const [ errors, setErrors ] = useState([])
     const navigate = useNavigate()
+    const { username, creature_type, age, password } = form
 
-   useEffect(() => {
-      if( loggedIn ){
-         navigate('/spells')
-      }
-   }, [loggedIn]) 
-
+   
     const handleSubmit = (e) => {
       e.preventDefault()
 
-      const strongParams = {
-         user: {
+      const user = {
             username,
-            // creature_type,
-            // age,
+            creature_type,
+            age,
             password
-         }
       }
-      fetch(baseUrl + '/users', {
+
+      fetch('/users', {
          method: "POST",
          headers,
-         body: JSON.stringify(strongParams)
+         body: JSON.stringify(user)
       })
-         .then(resp => resp.json())
-         .then(data => {
-            loginUser(data.user)
+         .then(resp => {
+            if(resp.ok){
+               resp.json().then(user => {
+               updateUser(user)
             // localStorage.setItem('jwt', data.token)
-            navigate('/spells')
-         })
+               navigate(`/users/${user.id}`)
+               })
+            }else {
+               resp.json().then(json => setErrors(Object.entries(json.errors)))
 
+            }
+         })  
+    }       
+
+   
+    const handleChange = (e) => {
+      setForm({...form,
+      [e.target.name]:e.target.value})
     }
-
     
   return (
-    <div>
+    <>
         <h1>Create Account</h1>
         <form onSubmit={ handleSubmit }>
             <div>
-               <label htmlFor="username">Username: </label> 
-               <input type="text" name="username" id="username" value={ username } onChange={ e => setUsername(e.target.value) }/>
-            </div>
-            {/* <div>
-               <label htmlFor="creature_type">Class: </label> 
-               <input type="text" name="creature_type" id="creature_type" value={ creature_type } onChange={ e => }/>
+               <label>Username: </label> 
+               <input 
+               type="text" 
+               name="username" 
+               value={ username }
+               onChange={ handleChange }/>
             </div>
             <div>
-               <label htmlFor="age">Age: </label> 
-               <input type="integer" name="age" id="age"/>
-            </div> */}
+               <label>Class: </label> 
+               <input 
+               type="text" 
+               name="creature_type" 
+               value={ creature_type }
+               onChange={ handleChange}/>
+            </div>
             <div>
-               <label htmlFor="password">Password: </label> 
-               <input type="password" name="password" id="password" value= { password } onChange= { e => setPassword(e.target.value)}/>
+               <label>Age: </label> 
+               <input 
+               type="integer" 
+               name="age"
+               value={ age }
+               onChange={ handleChange }/>
+            </div>
+            <div>
+               <label>Password: </label> 
+               <input 
+               type="password" 
+               name="password" 
+               value= { password }
+               onChange= {handleChange}/>
             </div>
             <input type="submit" value="Signup"/>
         </form>
-    </div>
+{/* { errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null } */}
+    </>
   )
 }
 
 export default Signup
+
+
+// useEffect(() => {
+   //    if( loggedIn ){
+   //       navigate('/spells')
+   //    }
+   // }, [loggedIn, navigate]) 
