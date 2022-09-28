@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const SpellCards = ({ spell }) => {
+const SpellCards = ({spell}) => {
     const navigate = useNavigate()
   return (
     <div className='card' style={{ textAlign: 'center', fontSize: 20}}>

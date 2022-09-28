@@ -13,17 +13,14 @@ import SpellDetail from './components/Spells/SpellDetail';
 const App = () => {
   const [ currentUser, setCurrentUser ] = useState("")
   const [ spells, setSpells ] = useState([])
-  const [errors, setErrors] = useState(false)
+  // const [errors, setErrors] = useState(false)
 
   useEffect(() => {
     fetchSpells()
   }, [])
 
  const fetchSpells = () => {
-  fetch('/spells', {
-          method: "GET",
-          headers,
-        })
+  fetch('/spells')
           .then(resp => resp.json())
           .then(spells => setSpells(spells))
       }
@@ -49,7 +46,7 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup updateUser={ updateUser}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser}/>} />
-      <Route path="/spells" element={<SpellList />} />
+      <Route path="/spells" element={<SpellList spells={ spells }/>} />
       <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
      </Routes>
   </Router>
