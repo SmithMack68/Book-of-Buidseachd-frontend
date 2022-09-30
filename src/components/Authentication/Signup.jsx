@@ -38,8 +38,10 @@ const Signup = ({ updateUser }) => {
                navigate(`/users/${user.id}`)
                })
             }else {
-               resp.json().then(json => setErrors(Object.entries(json.errors)))
-
+               // resp.json().then(json => setErrors(Object.entries(json.errors)))
+               resp.json().then(errors => {
+                  console.error(errors)
+               })
             }
          })  
     }       
@@ -51,10 +53,10 @@ const Signup = ({ updateUser }) => {
     }
     
   return (
-    <>
-        <h1>Create Account</h1>
-        <form onSubmit={ handleSubmit }>
-            <div>
+    < >
+        <h1 style={{ textAlign: "center"}}>Create Account</h1>
+        <form onSubmit={ handleSubmit } style={{ textAlign: "center"}} >
+            <div >
                <label>Username: </label> 
                <input 
                type="text" 

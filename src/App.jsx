@@ -7,12 +7,14 @@ import Login from './components/Authentication/Login';
 // import { headers } from './Globals'
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
+import UserPage from './components/User/UserPage';
 // import { getCurrentUser } from './actions/auth';
 
 
 const App = () => {
   const [ currentUser, setCurrentUser ] = useState("")
   const [ spells, setSpells ] = useState([])
+  
   // const [errors, setErrors] = useState(false)
 
   useEffect(() => {
@@ -48,12 +50,28 @@ const App = () => {
       <Route path="/login" element={<Login updateUser={ updateUser}/>} />
       <Route path="/spells" element={<SpellList spells={ spells }/>} />
       <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
+      <Route path="/users/:id" element={<UserPage currentUser={ currentUser} updateUser={ updateUser}/>} />
      </Routes>
   </Router>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // In first useEffect to use JWT
  // const token = localStorage.getItem('jwt')

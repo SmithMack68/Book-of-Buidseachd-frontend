@@ -8,7 +8,7 @@ const Login = ({ updateUser}) => {
          username: '',
          password: ''
     })
-    const [ erros, setErrors ] = useState([])
+    const [ errors, setErrors ] = useState([])
     const navigate = useNavigate()
 
     const {username, password} = form
@@ -31,6 +31,7 @@ const Login = ({ updateUser}) => {
                   updateUser(user)
             //   localStorage.setItem('jwt', data.token)
                   navigate(`/users/${user.id}`)
+                  // navigate('/spells')
                })
             }else {
                resp.json().then(json => setErrors(json.errors))
@@ -45,15 +46,15 @@ const Login = ({ updateUser}) => {
      }
         
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
           <h1>Login</h1>
           <form onSubmit={ handleSubmit }>
               <div>
-                 <label>Username: </label> 
+                 <label></label> 
                  <input 
                  type="text" 
                  name="username" 
-               //   id="username" 
+                 placeholder='Username:'
                  value={ username } 
                  onChange={ handleChange }/>
               </div>
