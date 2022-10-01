@@ -24,6 +24,9 @@ const Navbar = ({ currentUser, updateUser }) => {
           <li><Link to="/login">Login</Link></li>
           {/* <li> Welcome { currentUser.username }</li> */}
           <li><Link to="/spells">Spells</Link></li>
+          <ul>
+            {currentUser ? <Link to={`/users/${currentUser.id}`}>Your Grimoire</Link> : null}
+          </ul>
           {currentUser ? <button onClick={handleLogout }>Logout</button> : null}
           </nav>
         </ul>

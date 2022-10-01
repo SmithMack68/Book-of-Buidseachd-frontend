@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+// import { headers } from '../../Globals';
 
 
 const SpellDetail = () => {
     const [ spell, setSpell ] = useState([])
     // const [errors, setErrors ] = useState(false)
     const params = useParams()
+    // const navigate = useNavigate()
 
     useEffect(() => {
       fetch(`/spells/${params.id}`)
@@ -13,7 +15,15 @@ const SpellDetail = () => {
       .then(spell => setSpell(spell))
     }, [params.id])
 
-   
+    const handleCast = () => {
+      // fetch('/casts', {
+      //   method: 'POST',
+      //   headers,
+      //   body :JSON.stringify({spell_id:id, user_id:id})
+      // })
+      // .then(resp => resp.json())
+      // navigate(`/users/${user.id}`)
+    }
    
 
   return (
@@ -23,7 +33,7 @@ const SpellDetail = () => {
         <p style={{fontFamily: "cursive", fontSize:30}}>Description: { spell.short_description }</p>
         <p style={{fontFamily: "cursive", fontSize:30}}>Requirements: { spell.requirements }</p>
         <h2 style={{fontFamily: "cursive", fontSize:45}}>Incantation: { spell.incantation }</h2>
-        <button style={{fontFamily: "cursive", fontSize:30}}>Cast</button>
+        <button onClick={handleCast} style={{fontFamily: "cursive", fontSize:30}}>Cast</button>
         <button style={{fontFamily: "cursive", fontSize:30}}>Reviews</button>
     </div>
   )
