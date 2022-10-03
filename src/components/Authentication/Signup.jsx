@@ -10,7 +10,7 @@ const Signup = ({ updateUser }) => {
       age: '',
       paswword: ''
     })
-    const [ errors, setErrors ] = useState([])
+   //  const [ errors, setErrors ] = useState([])
     const navigate = useNavigate()
     const { username, creature_type, age, password } = form
 
@@ -90,7 +90,7 @@ const Signup = ({ updateUser }) => {
             </div>
             <input type="submit" value="Signup"/>
         </form>
-{/* { errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null } */}
+{/* { errors? errors.map(error => <div> {error[0]} {error[1]} {error[2]} {error[3]}</div>) :null } */}
     </>
   )
 }

@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const myStyle= {
       backgroundImage: "url(https://res.cloudinary.com/dcpwwcueu/image/upload/v1663296501/Spells/spell-casting-magical-elements-gathered-together-ready-to-cast-magic-66830138_rgqabs.jpg)",
-      height:'100vh',
-      marginTop: '-100px',
-      fontSize: '50px',
+      height:'100%',
+      width: '100%',
+      // marginTop: '-10px',
+      fontSize: '60px',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
   }

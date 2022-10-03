@@ -17,16 +17,15 @@ const Navbar = ({ currentUser, updateUser }) => {
    return (
       <div>
         <ul>
-          <nav>
-           
+          <nav style={{fontFamily: 'cursive', fontSize: 25}}>
+         
           <li><Link to="/">Home</Link></li>
           <li><Link to="/signup">Signup</Link></li>
           <li><Link to="/login">Login</Link></li>
-          {/* <li> Welcome { currentUser.username }</li> */}
           <li><Link to="/spells">Spells</Link></li>
-          <ul>
-            {currentUser ? <Link to={`/users/${currentUser.id}`}>Your Grimoire</Link> : null}
-          </ul>
+          <li>
+            {currentUser ? <Link to={`/users/${currentUser.id}`}>{currentUser.username}'s Grimoire</Link> : null}
+          </li>
           {currentUser ? <button onClick={handleLogout }>Logout</button> : null}
           </nav>
         </ul>
