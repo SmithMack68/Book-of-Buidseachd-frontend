@@ -8,12 +8,16 @@ import Login from './components/Authentication/Login';
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
 import UserPage from './components/User/UserPage';
+import ReviewForm from './components/Reviews/ReviewForm';
+import EditReview from './components/Reviews/EditReview';
+import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 
 
 
 const App = () => {
-  const [ currentUser, setCurrentUser ] = useState("")
+  const [ currentUser, setCurrentUser ] = useState(" ")
   const [ spells, setSpells ] = useState([])
+  // const [ reviews, setReviews ] = useState([])
   
   // const [errors, setErrors] = useState(false)
 
@@ -45,12 +49,16 @@ const App = () => {
    <Router>
      <Navbar  currentUser={ currentUser} updateUser={ updateUser}/>
      <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home spells={ spells }/>} />
       <Route path="/signup" element={<Signup updateUser={ updateUser}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser}/>} />
       <Route path="/spells" element={<SpellList spells={ spells }/>} />
       <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
-      <Route path="/users/:id" element={<UserPage currentUser={ currentUser }/>} />
+      <Route path="/users/:id" element={<UserPage updateUser={ updateUser}/>} />
+      <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
+      <Route path="/reviews/new" element={ <ReviewForm />} />
+      <Route path="/reviews/:id/edit" element={ <EditReview/>} />
+
      </Routes>
   </Router>
   );

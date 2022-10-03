@@ -46,30 +46,29 @@ const Login = ({ updateUser}) => {
      }
         
     return (
-      <div style={{ textAlign: "center" }}>
-          <h1>Login</h1>
+      <div style={{ textAlign: "center", fontFamily: 'cursive' }}>
+          <h1 style={{fontSize: 45}}>Login</h1>
           <form onSubmit={ handleSubmit }>
               <div>
-                 <label></label> 
+                 <label style={{fontSize: 30}}>Username: </label> 
                  <input 
                  type="text" 
                  name="username" 
-                 placeholder='Username:'
+               //   placeholder='Username:'
                  value={ username } 
                  onChange={ handleChange }/>
               </div>
               <div>
-                 <label>Password: </label> 
+                 <label style={{fontSize: 30}}>Password: </label> 
                  <input 
                  type="password" 
                  name="password" 
-               //   id="password" 
                  value= { password } 
                  onChange= { handleChange }/>
               </div>
-              <input type="submit" value="Login"/>
+              <input style={{ fontFamily: 'cursive'}}type="submit" value="submit"/>
           </form>
-          {/* {errors? <div>{errors}</div>:null} */}
+          {errors? <div>{errors}</div>:null}
       </div>
     )
   }
