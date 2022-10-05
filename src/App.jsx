@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/static/Home';
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
-// import { headers } from './Globals'
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
 import UserPage from './components/User/UserPage';
@@ -15,11 +14,26 @@ import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 
 
 const App = () => {
-  const [ currentUser, setCurrentUser ] = useState(" ")
+  const [ user, setUser] = useState("")
+  const [ currentUser, setCurrentUser ] = useState("")
   const [ spells, setSpells ] = useState([])
-  // const [ reviews, setReviews ] = useState([])
+  const [errors, setErrors] = useState(false)
+
   
-  // const [errors, setErrors] = useState(false)
+  useEffect(()=> {
+    fetch("/me")
+    .then(resp => {
+        if(resp.ok){
+            resp.json().then(user => {
+               setUser(user)
+               console.log(user)
+            })
+        }else {
+            resp.json().then(data => setErrors(data.error))
+        }
+    })
+   
+}, [])
 
   useEffect(() => {
     fetchSpells()
@@ -27,40 +41,37 @@ const App = () => {
 
  const fetchSpells = () => {
   fetch('/spells')
-          .then(resp => resp.json())
-          .then(spells => setSpells(spells))
+          .then(resp => {
+            if(resp.ok){
+              resp.json().then(setSpells)
+      } else {
+        resp.json().then(data => setErrors(data))
       }
+    })    
+  }
 
 
-//     fetch('/spells')
-//     .then(resp => {
-//       if(resp.ok){
-//         resp.json().then(setSpells)
-//       }else {
-//         resp.json().then(data => setErrors(data.error))
-//       }
-//     })
-//  }
 
  const updateUser = (user) => setCurrentUser(user)
 
-//  if(errors) return <h1>{errors}</h1>
+ if(errors) return <h1>{errors}</h1>
   return (
    <Router>
-     <Navbar  currentUser={ currentUser} updateUser={ updateUser}/>
+     <Navbar user={user} currentUser={ currentUser} updateUser={ updateUser}/>
      <Routes>
       <Route path="/" element={<Home spells={ spells }/>} />
       <Route path="/signup" element={<Signup updateUser={ updateUser}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser}/>} />
       <Route path="/spells" element={<SpellList spells={ spells }/>} />
       <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
-      <Route path="/users/:id" element={<UserPage updateUser={ updateUser}/>} />
+      <Route path="/me" element={<UserPage user={user} updateUser={updateUser}/>} />
       <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
       <Route path="/reviews/new" element={ <ReviewForm />} />
       <Route path="/reviews/:id/edit" element={ <EditReview/>} />
-
      </Routes>
   </Router>
+
+  
   );
 }
 

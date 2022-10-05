@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 
-const Navbar = ({ currentUser, updateUser }) => {
+const Navbar = ({ user, updateUser }) => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -23,10 +23,11 @@ const Navbar = ({ currentUser, updateUser }) => {
           <li><Link to="/signup">Signup</Link></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/spells">Spells</Link></li>
-          <li>
-            {currentUser ? <Link to={`/users/${currentUser.id}`}>{currentUser.username}'s Grimoire</Link> : null}
-          </li>
-          {currentUser ? <button onClick={handleLogout }>Logout</button> : null}
+          {/* <li> */}
+            {user ? <li><Link to={'/me'}>{user.username}'s Grimoire</Link></li> : null}
+          {/* </li> */}
+          <ul></ul>
+          {user ? <button onClick={handleLogout }>Logout</button> : null}
           </nav>
         </ul>
       </div>

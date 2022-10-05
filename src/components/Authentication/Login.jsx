@@ -29,9 +29,7 @@ const Login = ({ updateUser}) => {
             if(resp.ok){
                resp.json().then(user => {
                   updateUser(user)
-            //   localStorage.setItem('jwt', data.token)
-                  navigate(`/users/${user.id}`)
-                  // navigate('/spells')
+                  navigate('/me')
                })
             }else {
                resp.json().then(json => setErrors(json.errors))
@@ -54,7 +52,6 @@ const Login = ({ updateUser}) => {
                  <input 
                  type="text" 
                  name="username" 
-               //   placeholder='Username:'
                  value={ username } 
                  onChange={ handleChange }/>
               </div>
@@ -82,3 +79,4 @@ export default Login
    //       navigate('/spells')
    //    }
    //  }, [loggedIn, navigate])
+     //   localStorage.setItem('jwt', data.token)

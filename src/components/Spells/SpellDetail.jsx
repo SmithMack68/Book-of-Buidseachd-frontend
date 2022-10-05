@@ -7,7 +7,7 @@ const SpellDetail = () => {
     const [ spell, setSpell ] = useState([])
     // const [errors, setErrors ] = useState(false)
     const params = useParams()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
       fetch(`/spells/${params.id}`)
@@ -24,7 +24,9 @@ const SpellDetail = () => {
       // .then(resp => resp.json())
       // navigate(`/users/${user.id}`)
     }
-   
+   const handleNavigate = () => {
+      navigate('/reviews/new')
+   }
 
   return (
       <div className='card-container' style={{ textAlign: 'center'}}>
@@ -34,7 +36,7 @@ const SpellDetail = () => {
         <p style={{fontFamily: "cursive", fontSize:30}}>Requirements: { spell.requirements }</p>
         <h2 style={{fontFamily: "cursive", fontSize:45}}>Incantation: { spell.incantation }</h2>
         <button onClick={handleCast} style={{fontFamily: "cursive", fontSize:30}}>Cast</button>
-        <button style={{fontFamily: "cursive", fontSize:30}}>Reviews</button>
+        <button  style={{fontFamily: "cursive", fontSize:30}} onClick={ handleNavigate } >Add Review</button>
     </div>
   )
 }
