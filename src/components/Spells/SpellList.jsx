@@ -1,11 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 // import { useNavigate } from 'react-router-dom'
 import SpellCards from './SpellCards'
 
-const SpellList = ({spells}) => {
+const SpellList = () => {
+  const [ spells, setSpells ] = useState([])
   
-  // const spellCards = spells.map(spell => <SpellCards key={ spell.id } spell={ spell }/>)
+  useEffect(() => {
+    fetchSpells()
+  }, [])
+
+ const fetchSpells = () => {
+  fetch('/spells')
+          .then(resp => resp.json())
+          .then(spells => setSpells(spells))
+      }
+
   
+ 
   return (
     <div className='cards'>
        <h1 style={{fontFamily: 'cursive', textAlign: 'center', fontSize: 150}}>Spells</h1>

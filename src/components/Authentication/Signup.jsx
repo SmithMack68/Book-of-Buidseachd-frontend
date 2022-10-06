@@ -3,7 +3,7 @@ import { headers } from '../../Globals';
 import { useNavigate } from "react-router-dom";
 
 
-const Signup = ({ updateUser }) => {
+const Signup = ({ updateUser, signup }) => {
     const [ form, setForm ] = useState({
       username: '',
       creature_type: '',
@@ -33,9 +33,10 @@ const Signup = ({ updateUser }) => {
          .then(resp => {
             if(resp.ok){
                resp.json().then(user => {
+               signup(user)   
                updateUser(user)
             // localStorage.setItem('jwt', data.token)
-               navigate(`/users/${user.id}`)
+               navigate('/me')
                })
             }else {
                // resp.json().then(json => setErrors(Object.entries(json.errors)))

@@ -24,7 +24,7 @@ body {
 }
 
 .cards {
-  margin-top: 15%;
+  /* margin-top: 15%; */
  
   display: flex;
   flex-wrap: wrap;
@@ -32,10 +32,10 @@ body {
 
 .card {
   margin: 1.5rem;
-  /* flex-direction: flex; */
+  flex-direction: flex;
   border:  2px solid rgb(52, 37, 52);
   width: 500px;
-  background-color: rgb(126, 123, 123);
+  /* background-color: rgb(126, 123, 123); */
 }
 
 /* button {

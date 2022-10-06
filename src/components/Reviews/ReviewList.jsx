@@ -17,7 +17,7 @@ const ReviewList = () => {
         removeReview(id)
     }
 
-    const removeReview = (id =>{
+    const removeReview = (id => {
         const updatedReviews = reviews.filter((review) => review.id !== id)
         setReviews(updatedReviews)
     })

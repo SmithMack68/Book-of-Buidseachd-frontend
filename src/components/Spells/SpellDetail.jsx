@@ -22,7 +22,7 @@ const SpellDetail = () => {
       //   body :JSON.stringify({spell_id:id, user_id:id})
       // })
       // .then(resp => resp.json())
-      // navigate(`/users/${user.id}`)
+      // navigate('me')
     }
    const handleNavigate = () => {
       navigate('/reviews/new')

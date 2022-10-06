@@ -3,7 +3,7 @@ import { headers } from '../../Globals';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = ({ updateUser}) => { 
+const Login = ({ updateUser, login }) => { 
     const [form, setForm ] = useState({
          username: '',
          password: ''
@@ -28,6 +28,7 @@ const Login = ({ updateUser}) => {
            .then(resp => {
             if(resp.ok){
                resp.json().then(user => {
+                  login(user)
                   updateUser(user)
                   navigate('/me')
                })

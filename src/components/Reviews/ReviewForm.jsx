@@ -33,10 +33,11 @@ const handleSubmit = (e) => {
 
 
   return (
-    <div className='new-review-container'>
-      <h1>Leave a Review</h1>
+    <div className='new-review-container' style={{ textAlign: "center", fontFamily: 'cursive' }}>
+      <h1 style={{fontSize: 45}}>Leave a Review</h1>
       <form onSubmit={handleSubmit}>
         <div>
+          <label style={{ fontSize: 30}}>Username: </label>
           <input
             type="text"
             name="username"
@@ -45,6 +46,7 @@ const handleSubmit = (e) => {
           </input>
         </div>
         <div>
+        <label style={{ fontSize: 30}}>Comment: </label>
           <input
             type="textarea"
             name="comment"

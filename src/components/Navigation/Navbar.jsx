@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 
-const Navbar = ({ user, updateUser }) => {
+const Navbar = ({ user, updateUser, loggedIn, logout }) => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -11,35 +11,62 @@ const Navbar = ({ user, updateUser }) => {
       method: "DELETE"
     })
     updateUser("")
+    logout()
     navigate('/')
   }
 
+  
+if (loggedIn) {
    return (
       <div>
-        <ul>
+        <ul> 
           <nav style={{fontFamily: 'cursive', fontSize: 25}}>
-         
-          <li><Link to="/">Home</Link></li>
+          {/* <li><Link to="/">Home</Link></li>
           <li><Link to="/signup">Signup</Link></li>
-          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/login">Login</Link></li> */}
           <li><Link to="/spells">Spells</Link></li>
-          {/* <li> */}
-            {user ? <li><Link to={'/me'}>{user.username}'s Grimoire</Link></li> : null}
-          {/* </li> */}
+          {user ? <li><Link to={'/me'}>{user.username}'s Grimoire</Link></li> : null}
           <ul></ul>
-          {user ? <button onClick={handleLogout }>Logout</button> : null}
-          </nav>
+          {user ? <button onClick={ handleLogout }>Logout</button> : null}
+          </nav> 
         </ul>
       </div>
+)} else {
+  return (
+      <div>
+         <ul> 
+          <nav style={{fontFamily: 'cursive', fontSize: 25}}>
+          {/* <li><Link to="/">Home</Link></li> */}
+          {/* <li><Link to="/signup">Signup</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/spells">Spells</Link></li> */}
+          </nav>
+        </ul>
+      </div>)
+}
 
 
 
 
 
-   )
   
 
-  // const handleLogout = (e) => {
+ 
+    }
+
+export default Navbar
+
+
+
+
+
+
+
+
+
+
+
+ // const handleLogout = (e) => {
   //   e.preventDefault()
   //   logoutUser()
   // }
@@ -51,6 +78,3 @@ const Navbar = ({ user, updateUser }) => {
   // //       { loggedIn ? loggedInLinks() : loggedOutLinks() }
   // //   </div>
   // // )
-    }
-
-export default Navbar

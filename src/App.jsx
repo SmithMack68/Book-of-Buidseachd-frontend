@@ -15,8 +15,9 @@ import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 
 const App = () => {
   const [ user, setUser] = useState("")
+  const [ loggedIn, setLoggedIn] = useState(false)
   const [ currentUser, setCurrentUser ] = useState("")
-  const [ spells, setSpells ] = useState([])
+
   const [errors, setErrors] = useState(false)
 
   
@@ -24,9 +25,9 @@ const App = () => {
     fetch("/me")
     .then(resp => {
         if(resp.ok){
-            resp.json().then(user => {
-               setUser(user)
-               console.log(user)
+            resp.json().then(data => {
+               setUser(data)
+               data.error? setLoggedIn(false) : setLoggedIn(true)
             })
         }else {
             resp.json().then(data => setErrors(data.error))
@@ -34,37 +35,42 @@ const App = () => {
     })
    
 }, [])
-
-  useEffect(() => {
-    fetchSpells()
-  }, [])
-
- const fetchSpells = () => {
-  fetch('/spells')
-          .then(resp => {
-            if(resp.ok){
-              resp.json().then(setSpells)
-      } else {
-        resp.json().then(data => setErrors(data))
-      }
-    })    
+ 
+  const login = (user) => {
+    setUser(user)
+    setLoggedIn(true)
   }
 
+  const logout = () => {
+    setUser({})
+    setLoggedIn(false)
+  }
 
+  const signup = (user) => {
+    setUser(user)
+    setLoggedIn(true)
+  }
 
- const updateUser = (user) => setCurrentUser(user)
+  const updateUser = (user) => {
+    setCurrentUser(user)
+    setLoggedIn(true)
+   }
+  
+
+  
+
 
  if(errors) return <h1>{errors}</h1>
   return (
    <Router>
-     <Navbar user={user} currentUser={ currentUser} updateUser={ updateUser}/>
+     <Navbar user={user} loggedIn={loggedIn} logout={logout} currentUser={ currentUser} updateUser={ updateUser}/>
      <Routes>
-      <Route path="/" element={<Home spells={ spells }/>} />
-      <Route path="/signup" element={<Signup updateUser={ updateUser}/>} />
-      <Route path="/login" element={<Login updateUser={ updateUser}/>} />
-      <Route path="/spells" element={<SpellList spells={ spells }/>} />
-      <Route path="/spells/:id" element={<SpellDetail  spells= { spells }/>} />
-      <Route path="/me" element={<UserPage user={user} updateUser={updateUser}/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/signup" element={<Signup updateUser={ updateUser} signup={signup}/>} />
+      <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
+      <Route path="/spells" element={<SpellList />} />
+      <Route path="/spells/:id" element={<SpellDetail />} />
+      <Route path="/me" element={<UserPage user={user} updateUser={updateUser} />} />
       <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
       <Route path="/reviews/new" element={ <ReviewForm />} />
       <Route path="/reviews/:id/edit" element={ <EditReview/>} />
@@ -86,7 +92,15 @@ export default App;
 
 
 
-
+//     fetch('/spells')
+//     .then(resp => {
+//       if(resp.ok){
+//         resp.json().then(setSpells)
+//       }else {
+//         resp.json().then(data => setErrors(data.error))
+//       }
+//     })
+//  }
 
 
 
