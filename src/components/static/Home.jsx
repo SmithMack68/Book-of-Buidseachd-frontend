@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div style= { myStyle } >
       <h1 style={{fontSize: 100, fontFamily: 'cursive', textAlign: 'center', color: 'whitesmoke', textShadow: '-4px 0 black',}}>The Book <br></br>of <br></br>Buidseachd</h1>
-      <button  onClick={ navigateSignup } style={{ width: 150, height: 45, fontFamily: 'cursive', fontSize: 25}}>Signup</button><button onClick={ navigateLogin } style={{ width: 150, height: 45, fontFamily: 'cursive', fontSize: 25}}>Login</button>
+      <button  onClick={ navigateSignup } style={{ position: 'fixed', width: 150, height: 45, fontFamily: 'cursive', fontSize: 25, marginLeft: 300}}>Signup</button> &nbsp;&nbsp;<button onClick={ navigateLogin } style={{ position: 'fixed', width: 150, height: 45, fontFamily: 'cursive', fontSize: 25, marginLeft: 550}}>Login</button>
     </div>
   )
 }

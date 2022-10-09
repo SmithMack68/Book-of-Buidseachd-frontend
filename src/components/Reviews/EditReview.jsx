@@ -53,12 +53,14 @@ const EditReview = ({ updateReview }) => {
         </div>
         <div>
         <label style={{ fontSize: 30}}>Comment: </label>
-          <input
-            type="textarea"
+          <textarea
+            type="text"
+            rows='4'
+            cols='50'
             name="comment"
             value={formData.comment}
             onChange={handleChange}>
-          </input>
+          </textarea>
         </div>
         <input style={{ fontFamily: 'cursive'}}type="submit" value="submit"/>
       </form>

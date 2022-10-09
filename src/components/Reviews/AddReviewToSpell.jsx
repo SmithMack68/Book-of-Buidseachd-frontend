@@ -35,7 +35,7 @@ const AddReviewToSpell = () => {
     <div className="new-review-container">
       <div>
         <h1>Add a Review</h1>
-        <form onSubmit={ handleSubmit }></form>
+        <form onSubmit={ handleSubmit }>
         <div>
           <input
             type='text'
@@ -44,12 +44,16 @@ const AddReviewToSpell = () => {
             onChange={handleChange}></input>
         </div>
         <div>
-          <input
-            type='textarea'
+          <textarea
+            type='text'
+            rows='4'
+            cols='50'
             name='comment'
             value={state.comment}
-            onChange={handleChange}></input>
+            onChange={handleChange}></textarea>
         </div>
+        <input style={{ fontFamily: 'cursive'}}type="submit" value="submit"/>
+        </form>
       </div>
     </div>
   )
