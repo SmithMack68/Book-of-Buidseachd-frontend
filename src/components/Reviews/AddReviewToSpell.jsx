@@ -27,6 +27,7 @@ const AddReviewToSpell = () => {
     .then(resp => resp.json())
     .then(data => {
       setState(data)
+      console.log(data)
       navigate(`/spells/${spell_id}`)
     })
 

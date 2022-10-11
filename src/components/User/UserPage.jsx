@@ -29,7 +29,7 @@ const UserPage = ({ user }) => {
     <div style={{textAlign: 'center', fontFamily: 'cursive'}}>
       {/* <user key={user.id}></user> */}
         <h1>Welcome {user.username}</h1>
-        <h2>Casts</h2>
+        <h2>Spells Cast & Reviewed</h2>
         {/* <ul>
             {user.casts.map(cast => (
               <li>

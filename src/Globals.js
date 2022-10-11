@@ -1,5 +1,4 @@
 
-// export const baseUrl = 'http://localhost:3001';
 export const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json"
@@ -17,6 +16,7 @@ export const headers = {
 
 
 //JWT info
+// export const baseUrl = 'http://localhost:3001';
 // export const getToken = () => {
 //     return {
 //         'Authorization': `bearer ${ localStorage.getItem('jwt') }`
