@@ -11,7 +11,6 @@ const SpellCards = ({spell}) => {
          {/* <div style={{fontFamily: "cursive", fontSize:20}}>
           { spell.reviews.map(review => <li>{`${review.username} : ${review.comment}`}</li>)}
         </div>*/}
-       
         <button onClick={ () => navigate(`/spells/${spell.id}`) } style={{fontFamily: "cursive"}}>Details</button>
     </div>
   )
