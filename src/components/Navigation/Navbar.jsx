@@ -25,7 +25,7 @@ if (loggedIn) {
           <li><Link to="/signup">Signup</Link></li>
           <li><Link to="/login">Login</Link></li> */}
           <li><Link to="/spells">Spells</Link></li>
-          {user ? <li><Link to={'/me'}>{user.username}'s Grimoire</Link></li> : null}
+          {user ? <li><Link to={'/'}>{user.username}'s Grimoire</Link></li> : null}
           <ul></ul>
           {user ? <button onClick={ handleLogout }>Logout</button> : null}
           </nav> 

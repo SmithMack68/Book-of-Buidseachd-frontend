@@ -33,22 +33,25 @@ body {
 .card {
   margin: 1.5rem;
   flex-direction: flex;
-  border:  2px solid rgb(52, 37, 52);
-  width: 500px;
+  border:  3px solid rgb(52, 37, 52);
+  width: 400px;
+ 
   /* background-color: rgb(126, 123, 123); */
 }
 
-/* button {
-  background-color:rgb(126, 123, 123)
+.card-container {
+  margin-left: 80px;
+  margin-right: 80px;
+  /* margin-top: -50px; */
+  /* margin-bottom: 40px; */
+  flex-wrap: wrap;
+}
+
+/* .detail-button {
+  display: inline-block;
+  margin: 10px 0;
+  margin-top: auto;
+  align-self: flex-start;
 } */
-/* .spell.incantation {
-  color: red
-} */
-/* .card .image {
-  height: 225px;
-  position: relative;
-  width: 250px;
-  display: flex;
-  justify-content: center;
-} */
+
 

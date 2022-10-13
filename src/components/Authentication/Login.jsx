@@ -30,7 +30,7 @@ const Login = ({ updateUser, login }) => {
                resp.json().then(user => {
                   login(user)
                   updateUser(user)
-                  navigate('/me')
+                  navigate('/')
                })
             }else {
                resp.json().then(json => setErrors(json.errors))

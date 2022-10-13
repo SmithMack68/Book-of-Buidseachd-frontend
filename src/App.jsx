@@ -10,6 +10,10 @@ import UserPage from './components/User/UserPage';
 import ReviewForm from './components/Reviews/ReviewForm';
 import EditReview from './components/Reviews/EditReview';
 import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
+import ReviewList from './components/Reviews/ReviewList';
+// import ReviewCards from './components/Reviews/ReviewCards';
+// import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -17,12 +21,11 @@ const App = () => {
   const [ user, setUser] = useState("")
   const [ loggedIn, setLoggedIn] = useState(false)
   const [ currentUser, setCurrentUser ] = useState("")
-
   const [errors, setErrors] = useState(false)
-
+  // const navigate = useNavigate()
   
   useEffect(()=> {
-    fetch("/me")
+    fetch('/me')
     .then(resp => {
         if(resp.ok){
             resp.json().then(data => {
@@ -65,15 +68,17 @@ const App = () => {
    <Router>
      <Navbar user={user} loggedIn={loggedIn} logout={logout} currentUser={ currentUser} updateUser={ updateUser}/>
      <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home user={user} updateUser={updateUser} loggedIn={loggedIn}/>} />
       <Route path="/signup" element={<Signup updateUser={ updateUser} signup={signup}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
       <Route path="/spells" element={<SpellList />} />
       <Route path="/spells/:id" element={<SpellDetail />} />
-      <Route path="/me" element={<UserPage user={user} updateUser={updateUser} />} />
+      <Route path="/users/:id" element={<UserPage user={user} updateUser={updateUser} />} />
       <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
       <Route path="/reviews/new" element={ <ReviewForm />} />
       <Route path="/reviews/:id/edit" element={ <EditReview/>} />
+      <Route path="/reviews" element={ <ReviewList/>} />
+      {/* <Route path="/reviews/:id" element={ <ReviewCards/>} /> */}
      </Routes>
   </Router>
 

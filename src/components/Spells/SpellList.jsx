@@ -18,16 +18,18 @@ const SpellList = () => {
   
  
   return (
+    <div className="e-card-content" style={{fontFamily: 'cursive', textAlign: 'center', fontSize: 50, marginTop: -100}}>
+        <h1 >Spells</h1>
     <div className='cards'>
-       <h1 style={{fontFamily: 'cursive', textAlign: 'center', fontSize: 150}}>Spells</h1>
        {/* <CardContainer> */}
         {spells.map(spell => <SpellCards key={spell.id} spell={spell}/>)}
        {/* </CardContainer> */}
     </div>
+    </div>
   
   )
 }
-
+ 
 export default SpellList
 
 

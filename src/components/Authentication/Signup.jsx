@@ -36,7 +36,7 @@ const Signup = ({ updateUser, signup }) => {
                signup(user)   
                updateUser(user)
             // localStorage.setItem('jwt', data.token)
-               navigate('/me')
+               navigate('/')
                })
             }else {
                // resp.json().then(json => setErrors(Object.entries(json.errors)))
