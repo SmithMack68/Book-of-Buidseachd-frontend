@@ -49,22 +49,30 @@ const Login = ({ updateUser, login }) => {
           <h1 style={{fontSize: 45}}>Login</h1>
           <form onSubmit={ handleSubmit }>
               <div>
-                 <label style={{fontSize: 30}}>Username: </label> 
-                 <input 
+                 {/* <label style={{fontSize: 30}}>Username: </label>  */}
+                 <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                  type="text" 
+                 id='inputID'
+                 placeholder='Username:'
                  name="username" 
                  value={ username } 
-                 onChange={ handleChange }/>
+                 onChange={ handleChange }
+                 autoFocus={true}/>
               </div>
+              <br></br>
               <div>
-                 <label style={{fontSize: 30}}>Password: </label> 
-                 <input 
+                 {/* <label style={{fontSize: 30}}>Password: </label>  */}
+                 <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                  type="password" 
+                 id='inputID'
+                 placeholder='Password:'
                  name="password" 
                  value= { password } 
-                 onChange= { handleChange }/>
+                 onChange= { handleChange }
+                 autoFocus={true}/>
               </div>
-              <input style={{ fontFamily: 'cursive'}}type="submit" value="submit"/>
+              <br></br>
+              <input style={{ fontFamily: 'cursive', fontSize: 18}}type="submit" value="submit"/>
           </form>
           {errors? <div>{errors}</div>:null}
       </div>

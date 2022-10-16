@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 // import { useNavigate } from 'react-router-dom'
 import SpellCards from './SpellCards'
 
-const SpellList = () => {
-  const [ spells, setSpells ] = useState([])
+const SpellList = ({ spells }) => {
+//   const [ spells, setSpells ] = useState([])
   
-  useEffect(() => {
-    fetchSpells()
-  }, [])
+//   useEffect(() => {
+//     fetchSpells()
+//   }, [])
 
- const fetchSpells = () => {
-  fetch('/spells')
-          .then(resp => resp.json())
-          .then(spells => setSpells(spells))
-      }
+//  const fetchSpells = () => {
+//   fetch('/spells')
+//           .then(resp => resp.json())
+//           .then(spells => setSpells(spells))
+//       }
 
   
  
@@ -22,7 +22,7 @@ const SpellList = () => {
         <h1 >Spells</h1>
     <div className='cards'>
        {/* <CardContainer> */}
-        {spells.map(spell => <SpellCards key={spell.id} spell={spell}/>)}
+        {spells.map((spell, index) => <SpellCards key={index} spell={spell}/>)}
        {/* </CardContainer> */}
     </div>
     </div>
@@ -34,9 +34,5 @@ export default SpellList
 
 
 // const CardContainer = styled.h1`
-// `
- // useEffect(() => {
-  //   if( !loggedIn ) {
-  //     navigate('/login')
-  //   }
-  // },  [loggedIn, navigate])
+
+ 

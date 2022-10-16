@@ -27,6 +27,7 @@ const Home = ({ user, loggedIn }) => {
     <div style={{textAlign: 'center', fontFamily: 'cursive'}}>
       <h1>Welcome {user.username}</h1>
       <h2>Spells Cast & Reviewed</h2>
+     
     </div>
     )} else {
     return (
@@ -42,17 +43,3 @@ export default Home
 
 
 
-// return (
-//   <div style={{textAlign: 'center', fontFamily: 'cursive'}}>
-//     {/* <user key={user.id}></user> */}
-//       <h1>Welcome {user.username}</h1>
-//       <h2>Spells Cast & Reviewed</h2>
-//       {/* <ul>
-//           {user.casts.map(cast => (
-//             <li>
-//               <h2>{cast.spell.name}</h2>
-//             </li>
-//           ))}
-//       </ul> */}
-//   </div>
-// )

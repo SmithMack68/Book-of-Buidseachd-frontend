@@ -21,13 +21,10 @@ if (loggedIn) {
       <div>
         <ul> 
           <nav style={{fontFamily: 'cursive', fontSize: 25}}>
-          {/* <li><Link to="/">Home</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
-          <li><Link to="/login">Login</Link></li> */}
           <li><Link to="/spells">Spells</Link></li>
           {user ? <li><Link to={'/'}>{user.username}'s Grimoire</Link></li> : null}
           <ul></ul>
-          {user ? <button onClick={ handleLogout }>Logout</button> : null}
+          {user ? <button onClick={ handleLogout } style={{fontFamily: 'cursive', fontSize: 18}}>Logout</button> : null}
           </nav> 
         </ul>
       </div>
@@ -36,23 +33,13 @@ if (loggedIn) {
       <div>
          <ul> 
           <nav style={{fontFamily: 'cursive', fontSize: 25}}>
-          {/* <li><Link to="/">Home</Link></li> */}
-          {/* <li><Link to="/signup">Signup</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/spells">Spells</Link></li> */}
           </nav>
         </ul>
       </div>)
-}
-
-
-
-
-
-  
+  }
 
  
-    }
+}
 
 export default Navbar
 
@@ -66,10 +53,6 @@ export default Navbar
 
 
 
- // const handleLogout = (e) => {
-  //   e.preventDefault()
-  //   logoutUser()
-  // }
 
   
   

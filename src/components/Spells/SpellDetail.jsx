@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-// import { headers } from '../../Globals';
 
 
 
 const SpellDetail = () => {
-    const [ spell, setSpell ] = useState([])
-    // const [ reviews, setReviews ] = useState([])
-    // const [errors, setErrors ] = useState(false)
+    const [ spell, setSpell ] = useState({})
+  
     const params = useParams()
     const navigate = useNavigate()
 
@@ -15,14 +13,13 @@ const SpellDetail = () => {
       fetch(`/spells/${params.id}`)
       .then(resp => resp.json())
       .then(spell => setSpell(spell))
-      // setReviews(spell.reviews)
     }, [params.id])
 
    
    const handleNavigate = () => {
       navigate('/reviews/new')
    }
-
+  
   return (
       <div className='card-container' style={{ textAlign: 'center'}}>
         <h2 style={{fontFamily: "cursive", fontSize: 45}}>{ spell.name }</h2>
@@ -31,10 +28,10 @@ const SpellDetail = () => {
         <p style={{fontFamily: "cursive", fontSize:30}}>Requirements: { spell.requirements }</p>
         <h2 style={{fontFamily: "cursive", fontSize:45}}>Incantation: { spell.incantation }</h2>
         <h2 style={{fontFamily: "cursive", fontSize:30}}>Reviews:</h2>
-        {/* <div style={{fontFamily: "cursive", fontSize:20}}>
-          { spell.reviews.map((review, index) => <li key={index}>{`${review.username} : ${review.comment}`}</li>)}
+        <div style={{fontFamily: "cursive", fontSize:20}}>
+          {spell.reviews ? (spell.reviews.map((review, index) => <li key={index}>{`${review.username} : ${review.comment}`} <button style={{fontFamily:'cursive'}}>Edit</button><button style={{fontFamily:'cursive'}}>Delete</button></li>)) : ""}
         </div>
-        <br></br> */}
+        <br></br>
         <button  style={{fontFamily: "cursive", fontSize:20}} onClick={ handleNavigate } >Add Review</button>
     </div>
   )
@@ -52,12 +49,4 @@ export default SpellDetail
 
 
 
- // const handleCast = () => {
-    //   // fetch('/casts', {
-    //   //   method: 'POST',
-    //   //   headers,
-    //   //   body :JSON.stringify({spell_id:id, user_id:id})
-    //   // })
-    //   // .then(resp => resp.json())
-    //   // navigate('me')
-    // }
+ 

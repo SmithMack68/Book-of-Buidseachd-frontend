@@ -6,12 +6,12 @@ import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
-import UserPage from './components/User/UserPage';
+// import UserPage from './components/User/UserPage';
 import ReviewForm from './components/Reviews/ReviewForm';
 import EditReview from './components/Reviews/EditReview';
 import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 import ReviewList from './components/Reviews/ReviewList';
-// import ReviewCards from './components/Reviews/ReviewCards';
+import ReviewDetail from './components/Reviews/ReviewCards';
 // import { useNavigate } from 'react-router-dom';
 
 
@@ -22,6 +22,8 @@ const App = () => {
   const [ loggedIn, setLoggedIn] = useState(false)
   const [ currentUser, setCurrentUser ] = useState("")
   const [errors, setErrors] = useState(false)
+  const [ spells, setSpells ] = useState([])
+  const [ reviews, setReviews ] = useState([])
   // const navigate = useNavigate()
   
   useEffect(()=> {
@@ -59,6 +61,27 @@ const App = () => {
     setLoggedIn(true)
    }
   
+  useEffect(() => {
+    fetchSpells()
+  }, [])
+
+ const fetchSpells = () => {
+  fetch('/spells')
+          .then(resp => resp.json())
+          .then(spells => setSpells(spells))
+      }
+
+  
+    // const [ errors, setErrors ] = useState(false)
+    // const params = useParams()
+
+   
+
+    useEffect(() => {
+        fetch('/reviews')
+        .then(resp => resp.json())
+        .then(reviews => setReviews(reviews))
+    }, [])
 
   
 
@@ -71,14 +94,14 @@ const App = () => {
       <Route path="/" element={<Home user={user} updateUser={updateUser} loggedIn={loggedIn}/>} />
       <Route path="/signup" element={<Signup updateUser={ updateUser} signup={signup}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
-      <Route path="/spells" element={<SpellList />} />
-      <Route path="/spells/:id" element={<SpellDetail />} />
-      <Route path="/users/:id" element={<UserPage user={user} updateUser={updateUser} />} />
+      <Route path="/spells" element={<SpellList spells={spells}/>} />
+      <Route path="/spells/:id" element={<SpellDetail reviews={reviews}/>} />
+      {/* <Route path="/users/:id" element={<UserPage user={user} updateUser={updateUser} />} /> */}
       <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
       <Route path="/reviews/new" element={ <ReviewForm />} />
       <Route path="/reviews/:id/edit" element={ <EditReview/>} />
-      <Route path="/reviews" element={ <ReviewList/>} />
-      {/* <Route path="/reviews/:id" element={ <ReviewCards/>} /> */}
+      <Route path="/reviews" element={ <ReviewList reviews={reviews}/>} />
+      <Route path="/reviews/:id" element={ <ReviewDetail />} />
      </Routes>
   </Router>
 

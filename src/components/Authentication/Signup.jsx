@@ -35,7 +35,7 @@ const Signup = ({ updateUser, signup }) => {
                resp.json().then(user => {
                signup(user)   
                updateUser(user)
-            // localStorage.setItem('jwt', data.token)
+            
                navigate('/')
                })
             }else {
@@ -54,53 +54,68 @@ const Signup = ({ updateUser, signup }) => {
     }
     
   return (
-    < >
-        <h1 style={{ textAlign: "center"}}>Create Account</h1>
+    < div style={{ textAlign: "center", fontFamily: 'cursive', color: 'black' }}>
+        <h1 style={{ textAlign: "center", fontSize: 45}}>Create Account</h1>
         <form onSubmit={ handleSubmit } style={{ textAlign: "center"}} >
             <div >
-               <label>Username: </label> 
-               <input 
+               {/* <label style={{fontSize:30}}>Username: </label>  */}
+               <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="text" 
+               id='inputID'
+               placeholder='Username:'
                name="username" 
                value={ username }
-               onChange={ handleChange }/>
+               onChange={handleChange}
+               autoFocus={true}/>
             </div>
+            <br></br>
             <div>
-               <label>Class: </label> 
-               <input 
+               {/* <label style={{fontSize:30}}>Class: </label>  */}
+               <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30, color: 'black'}}
                type="text" 
+               id='inputID'
+               placeholder='Class:'
                name="creature_type" 
                value={ creature_type }
-               onChange={ handleChange}/>
+               onChange={handleChange}
+               autoFocus={true}/>
             </div>
+            <br></br>
             <div>
-               <label>Age: </label> 
-               <input 
+               {/* <label style={{fontSize:30}}>Age: </label>  */}
+               <input style={{height: 45, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="integer" 
+               id='inputID'
+               placeholder='Age:'
                name="age"
                value={ age }
-               onChange={ handleChange }/>
+               onChange={handleChange}
+               autoFocus={true}/>
             </div>
+            <br></br>
             <div>
-               <label>Password: </label> 
-               <input 
+               {/* <label style={{fontSize:30}}>Password: </label>  */}
+               <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="password" 
+               id='inputID'
+               placeholder='Password:'
                name="password" 
                value= { password }
                onChange= {handleChange}/>
             </div>
-            <input type="submit" value="Signup"/>
+            <br></br>
+            <input style={{fontFamily: 'cursive', fontSize: 18}}type="submit" value="signup"/>
         </form>
 {/* { errors? errors.map(error => <div> {error[0]} {error[1]} {error[2]} {error[3]}</div>) :null } */}
-    </>
+    </div>
   )
 }
 
 export default Signup
 
 
-// useEffect(() => {
-   //    if( loggedIn ){
-   //       navigate('/spells')
-   //    }
-   // }, [loggedIn, navigate]) 
+
+
+
+ // JWT
+ // localStorage.setItem('jwt', data.token)
