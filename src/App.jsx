@@ -6,13 +6,11 @@ import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
-// import UserPage from './components/User/UserPage';
-import ReviewForm from './components/Reviews/ReviewForm';
 import EditReview from './components/Reviews/EditReview';
 import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 import ReviewList from './components/Reviews/ReviewList';
-import ReviewDetail from './components/Reviews/ReviewCards';
-// import { useNavigate } from 'react-router-dom';
+import ReviewDetail from './components/Reviews/ReviewDetail';
+
 
 
 
@@ -24,7 +22,7 @@ const App = () => {
   const [errors, setErrors] = useState(false)
   const [ spells, setSpells ] = useState([])
   const [ reviews, setReviews ] = useState([])
-  // const navigate = useNavigate()
+ 
   
   useEffect(()=> {
     fetch('/me')
@@ -70,12 +68,7 @@ const App = () => {
           .then(resp => resp.json())
           .then(spells => setSpells(spells))
       }
-
   
-    // const [ errors, setErrors ] = useState(false)
-    // const params = useParams()
-
-   
 
     useEffect(() => {
         fetch('/reviews')
@@ -83,7 +76,12 @@ const App = () => {
         .then(reviews => setReviews(reviews))
     }, [])
 
-  
+
+const addReview = (review) => {
+  setReviews([...reviews, review])
+}
+
+
 
 
  if(errors) return <h1>{errors}</h1>
@@ -95,13 +93,11 @@ const App = () => {
       <Route path="/signup" element={<Signup updateUser={ updateUser} signup={signup}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
       <Route path="/spells" element={<SpellList spells={spells}/>} />
-      <Route path="/spells/:id" element={<SpellDetail reviews={reviews}/>} />
-      {/* <Route path="/users/:id" element={<UserPage user={user} updateUser={updateUser} />} /> */}
-      <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell />} />
-      <Route path="/reviews/new" element={ <ReviewForm />} />
+      <Route path="/spells/:id" element={<SpellDetail />} />
+      <Route path="/spells/reviews/:spell_id" element={ <AddReviewToSpell addReview={addReview}/>} />
       <Route path="/reviews/:id/edit" element={ <EditReview/>} />
-      <Route path="/reviews" element={ <ReviewList reviews={reviews}/>} />
-      <Route path="/reviews/:id" element={ <ReviewDetail />} />
+      <Route path="/reviews" element={ <ReviewList reviews={reviews} />} />
+      <Route path="/reviews/:id" element={ <ReviewDetail setReviews={setReviews}/>} />
      </Routes>
   </Router>
 

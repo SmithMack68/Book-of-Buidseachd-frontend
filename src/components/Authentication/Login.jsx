@@ -49,7 +49,6 @@ const Login = ({ updateUser, login }) => {
           <h1 style={{fontSize: 45}}>Login</h1>
           <form onSubmit={ handleSubmit }>
               <div>
-                 {/* <label style={{fontSize: 30}}>Username: </label>  */}
                  <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                  type="text" 
                  id='inputID'
@@ -61,7 +60,6 @@ const Login = ({ updateUser, login }) => {
               </div>
               <br></br>
               <div>
-                 {/* <label style={{fontSize: 30}}>Password: </label>  */}
                  <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                  type="password" 
                  id='inputID'
@@ -83,6 +81,13 @@ const Login = ({ updateUser, login }) => {
 export default Login
 
 
+
+
+
+
+
+
+//JWT
 //  useEffect(() => {
    //    if( loggedIn) {
    //       navigate('/spells')

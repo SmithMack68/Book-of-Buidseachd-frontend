@@ -24,11 +24,23 @@ const Home = ({ user, loggedIn }) => {
 
   if (loggedIn) {
   return (
+    <>
     <div style={{textAlign: 'center', fontFamily: 'cursive'}}>
-      <h1>Welcome {user.username}</h1>
-      <h2>Spells Cast & Reviewed</h2>
-     
+      <h1 style={{fontSize:40}}> {user.username}, Welcome to your Grimoire</h1>
+      <h2 style={{fontSize:30}}>Spells Cast</h2>
+        {user.spells.map((spell, index) => (
+          <li style={{ fontSize: 25}} key={index}>{spell.name} ~ Incantation: &nbsp; {spell.incantation} </li>
+          ))}
     </div>
+    <br></br>
+    <br></br>
+    <div style={{textAlign: 'center', fontFamily: 'cursive'}}>
+    <h2 style={{fontSize:30}}>Spell Reviews</h2>
+      {user.reviews.map((review, index) => (
+        <li style={{ fontSize: 25}} key={index}>{review.spell.name} : {review.comment} </li>
+        ))}
+  </div>
+  </>
     )} else {
     return (
       <div style= { myStyle } >
@@ -40,6 +52,5 @@ const Home = ({ user, loggedIn }) => {
 }
 
 export default Home
-
 
 

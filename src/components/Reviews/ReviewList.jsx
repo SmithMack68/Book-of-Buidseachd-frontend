@@ -1,23 +1,16 @@
 import React from 'react'
-import ReviewCards from './ReviewCards'
+import ReviewCard from './ReviewCard'
 // import { useParams } from 'react-router-dom'
 // import { headers } from '../../Globals'
 
 
 
-const ReviewList = ({ reviews }) => {
+const ReviewList = ({ reviews, deleteReview }) => {
     // const [ reviews, setReviews ] = useState([])
     // // // const [ errors, setErrors ] = useState(false)
     // const params = useParams()
 
-   
-
-    // useEffect(() => {
-    //     fetch('/reviews')
-    //     .then(resp => resp.json())
-    //     .then(reviews => setReviews(reviews))
-    // }, [])
-
+  
     // useEffect(() => {
     //   fetch(`/reviews/${params.id}`)
     //     .then(resp => {
@@ -32,10 +25,10 @@ const ReviewList = ({ reviews }) => {
     // }, [params.id])
 
     // const deleteReview = (id) => {
-    //     fetch(`/reviews/${params.id}`, {
+    //     fetch(`/reviews/${id}`, {
     //       method: "DELETE",
     //       headers,
-    //     });
+    //     })
     //     removeReview(id)
     // }
 
@@ -44,7 +37,7 @@ const ReviewList = ({ reviews }) => {
     //     setReviews(updatedReviews)
     // }
 
-    const reviewCards = reviews.map((review, index) => <ReviewCards key={index} review={review} spell={review.spell} />)
+    const reviewCards = reviews.map((review, index) => <ReviewCard key={index} review={review} spell={review.spell} deleteReview={ deleteReview}/>)
 // if(errors) return <h1>{errors}</h1>
   return (
     <div className='review-container'>

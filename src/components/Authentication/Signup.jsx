@@ -39,7 +39,6 @@ const Signup = ({ updateUser, signup }) => {
                navigate('/')
                })
             }else {
-               // resp.json().then(json => setErrors(Object.entries(json.errors)))
                resp.json().then(errors => {
                   console.error(errors)
                })
@@ -58,7 +57,6 @@ const Signup = ({ updateUser, signup }) => {
         <h1 style={{ textAlign: "center", fontSize: 45}}>Create Account</h1>
         <form onSubmit={ handleSubmit } style={{ textAlign: "center"}} >
             <div >
-               {/* <label style={{fontSize:30}}>Username: </label>  */}
                <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="text" 
                id='inputID'
@@ -70,7 +68,6 @@ const Signup = ({ updateUser, signup }) => {
             </div>
             <br></br>
             <div>
-               {/* <label style={{fontSize:30}}>Class: </label>  */}
                <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30, color: 'black'}}
                type="text" 
                id='inputID'
@@ -82,7 +79,6 @@ const Signup = ({ updateUser, signup }) => {
             </div>
             <br></br>
             <div>
-               {/* <label style={{fontSize:30}}>Age: </label>  */}
                <input style={{height: 45, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="integer" 
                id='inputID'
@@ -94,7 +90,6 @@ const Signup = ({ updateUser, signup }) => {
             </div>
             <br></br>
             <div>
-               {/* <label style={{fontSize:30}}>Password: </label>  */}
                <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="password" 
                id='inputID'
@@ -106,6 +101,7 @@ const Signup = ({ updateUser, signup }) => {
             <br></br>
             <input style={{fontFamily: 'cursive', fontSize: 18}}type="submit" value="signup"/>
         </form>
+        
 {/* { errors? errors.map(error => <div> {error[0]} {error[1]} {error[2]} {error[3]}</div>) :null } */}
     </div>
   )
@@ -119,3 +115,5 @@ export default Signup
 
  // JWT
  // localStorage.setItem('jwt', data.token)
+ //Errors
+// resp.json().then(json => setErrors(Object.entries(json.errors)))

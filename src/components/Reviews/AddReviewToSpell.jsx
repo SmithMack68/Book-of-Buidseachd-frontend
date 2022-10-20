@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { headers } from '../../Globals'
 
-const AddReviewToSpell = () => {
+const AddReviewToSpell = ({ addReview }) => {
   const [state, setState] = useState({
     username:'',
     comment: ''
@@ -19,41 +19,51 @@ const AddReviewToSpell = () => {
 
   const handleSubmit =(e) => {
     e.preventDefault()
-    fetch(`/spells/${spell_id}/reviews`, {
+    fetch(`/reviews`, {
       method: 'POST',
       headers,
-      body: JSON.stringify(state)
+      body: JSON.stringify({
+        spell_id: parseInt(spell_id),
+        username: state.username,
+        comment: state.comment,
+      })
     })
-    .then(resp => resp.json())
-    .then(data => {
-      setState(data)
-      console.log(data)
-      navigate(`/spells/${spell_id}`)
+    .then(resp => {
+      if(resp.ok){
+        resp.json().then(addReview)
+        navigate(`/spells/${spell_id}`)
+      }
     })
+   
 
   }
   return (
-    <div className="new-review-container">
+    <div className="new-review-container" style={{ textAlign: "center", fontFamily: 'cursive' }}>
       <div>
-        <h1>Add a Review</h1>
+        <h1 style={{fontSize: 45}}>Add a Review</h1>
         <form onSubmit={ handleSubmit }>
         <div>
-          <input
+          <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
             type='text'
             name='username'
+            id='inputID'
+            placeholder='Username:'
             value={state.username}
             onChange={handleChange}></input>
         </div>
+        <br></br>
         <div>
-          <textarea
+          <textarea  style={{fontFamily: 'cursive', fontSize: 30}}
             type='text'
-            rows='4'
-            cols='50'
+            id='inputID'
+            placeholder='Comment:'
+            rows='5'
+            cols='48'
             name='comment'
             value={state.comment}
             onChange={handleChange}></textarea>
         </div>
-        <input style={{ fontFamily: 'cursive'}}type="submit" value="submit"/>
+        <input style={{ fontFamily: 'cursive', fontSize: 18}}type="submit" value="submit"/>
         </form>
       </div>
     </div>

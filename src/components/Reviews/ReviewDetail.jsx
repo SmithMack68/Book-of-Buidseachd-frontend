@@ -1,38 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import ReviewCard from './ReviewCard'
 
-const ReviewDetail = () => {
-    const [ review, setReview ] = useState([])
+const ReviewDetail = ({ setReviews }) => {
+    const [ review, setReview ]= useState({})
     const params = useParams()
-    
+    // const navigate = useNavigate()
+
     useEffect(() => {
         fetch(`/reviews/${params.id}`)
         .then(resp => resp.json())
-        .then(review => setReview(review))
+        .then(data => setReview(data))
     }, [params.id])
 
 
 
 
   return (
-    <div>ReviewDetail:
-        {review.username}
+    <div><h1>ReviewDetail</h1>
+    <h2><ReviewCard review={review} setReviews={setReviews}/></h2>
     </div>
   )
 }
 
-export default ReviewDetail
-
-
-// useEffect(() => {
-    //   fetch(`/reviews/${params.id}`)
-    //     .then(resp => {
-    //       if(resp.ok) {
-    //         resp.json().then(data => {
-    //           setReview(data)
-    //         })
-    //       } else {
-    //         resp.json().then(data => setErrors(data.errors))
-    //       }
-    //     })
-    // }, [params.id])
+export default ReviewDetail 
