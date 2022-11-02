@@ -35,7 +35,6 @@ const Signup = ({ updateUser, signup }) => {
                resp.json().then(user => {
                signup(user)   
                updateUser(user)
-            
                navigate('/')
                })
             }else {

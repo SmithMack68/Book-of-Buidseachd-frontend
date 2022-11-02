@@ -29,7 +29,7 @@ const Login = ({ updateUser, login }) => {
             if(resp.ok){
                resp.json().then(user => {
                   login(user)
-                  updateUser(user)
+                  // updateUser(user)
                   navigate('/')
                })
             }else {

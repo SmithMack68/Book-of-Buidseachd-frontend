@@ -6,6 +6,7 @@ import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
+import AddSpell from './components/Spells/AddSpell'
 import EditReview from './components/Reviews/EditReview';
 import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 import ReviewList from './components/Reviews/ReviewList';
@@ -15,11 +16,12 @@ import ReviewDetail from './components/Reviews/ReviewDetail';
 
 
 
+
 const App = () => {
-  const [ user, setUser] = useState("")
-  const [ loggedIn, setLoggedIn] = useState(false)
-  const [ currentUser, setCurrentUser ] = useState("")
-  const [errors, setErrors] = useState(false)
+  const [ user, setUser ] = useState({})
+  const [ loggedIn, setLoggedIn ] = useState(false)
+  const [ currentUser, setCurrentUser ] = useState({})
+  const [ errors, setErrors ] = useState(false)
   const [ spells, setSpells ] = useState([])
   const [ reviews, setReviews ] = useState([])
  
@@ -76,11 +78,24 @@ const App = () => {
         .then(reviews => setReviews(reviews))
     }, [])
 
+const addSpell = (spell) => {
+  setSpells([...spells, spell])
+}
 
 const addReview = (review) => {
   setReviews([...reviews, review])
 }
 
+
+const updateReview = (updatedReview) => setReviews(current => {
+  return current.map(review => {
+    if(review.id === updatedReview.id){
+      return updatedReview
+    } else {
+      return review
+    }
+  })
+})
 
 
 
@@ -94,8 +109,9 @@ const addReview = (review) => {
       <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
       <Route path="/spells" element={<SpellList spells={spells}/>} />
       <Route path="/spells/:id" element={<SpellDetail />} />
+      <Route path="/spells/new" element={<AddSpell addSpell={ addSpell }/>} />
       <Route path="/spells/reviews/:spell_id" element={ <AddReviewToSpell addReview={addReview}/>} />
-      <Route path="/reviews/:id/edit" element={ <EditReview/>} />
+      <Route path="/reviews/:id/edit" element={ <EditReview updateReview={updateReview} setReviews={setReviews} user={user} loggedIn={loggedIn}/>} />
       <Route path="/reviews" element={ <ReviewList reviews={reviews} />} />
       <Route path="/reviews/:id" element={ <ReviewDetail setReviews={setReviews}/>} />
      </Routes>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ReviewCard from '../Reviews/ReviewCard'
 
 
 const SpellDetail = () => {
@@ -46,8 +47,8 @@ const removeReview = (id) => {
         <p style={{fontFamily: "cursive", fontSize:30}}>Requirements: { spell.requirements }</p>
         <h2 style={{fontFamily: "cursive", fontSize:45}}>Incantation: { spell.incantation }</h2>
         <h2 style={{fontFamily: "cursive", fontSize:30}}>Reviews:</h2>
-        <h3 style={{fontFamily: "cursive", fontSize:20}}>
-          {spell.reviews ? (spell.reviews.map((review, index) => <li key={index}>{review.username} : {review.comment} &nbsp;&nbsp;<button style={{fontFamily:'cursive'}}>Edit</button><button style={{fontFamily:'cursive'}} onClick={()=> deleteReview(review.id)} >Delete</button></li>)) : ""}
+        <h3 style={{fontFamily: "cursive", fontSize:20}} >
+          {spell.reviews ? (spell.reviews.map((review, index) =><ReviewCard key={index} deleteReview={deleteReview} review={review} index={index}/> )) : ""}
         </h3>
         <br></br>
         <button  style={{fontFamily: "cursive", fontSize:15}} onClick={ handleNavigate }>Add Review</button>

@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { headers } from '../../Globals'
 
 
-const EditReview = ({ updateReview }) => {
+const EditReview = ({ updateReview, user, loggedIn }) => {
   const [formData, setFormData] = useState({
       username: '',
       comment: ''
   })
 
+  const navigate = useNavigate()
   const [errors, setErrors] = useState([])
   const {id} = useParams()
-  useEffect(() => {
-    fetch(`/reviews/${id}`)
-    .then(resp => resp.json())
-    .then(setFormData)
-  }, [id])
+
+  // useEffect(() => {
+  //   fetch(`/reviews/${id}`)
+  //   .then(resp => resp.json())
+  //   console.log(formData)
+  //   .then(setFormData)
+  // }, [id, formData])
+console.log(user)
+  useEffect((user) => {
+    debugger
+  }, [])
+
 
   const handleChange = (e) => {
-    const { name, value} = e.target 
-    setFormData({ ...formData, [name]: value})
+    setFormData({ ...formData, 
+      [e.target.name]: e.target.value})
   }
 
   const handleSubmit = (e) => {
@@ -32,15 +40,19 @@ const EditReview = ({ updateReview }) => {
     .then(resp => {
       if(resp.ok){
         resp.json().then(updateReview)
+        navigate(`/reviews/${id}`)
       } else {
         resp.json().then(data => setErrors(data))
       }
     })
   }
   if(errors) return <h1>{errors}</h1>
+
+
+
   return (
     <div>
-      <h1 style={{fontSize: 45}}>Leave a Review</h1>
+      <h1 style={{fontSize: 45}}>Edit Review</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label style={{ fontSize: 30}}>Username: </label>

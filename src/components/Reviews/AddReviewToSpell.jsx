@@ -43,16 +43,6 @@ const AddReviewToSpell = ({ addReview }) => {
         <h1 style={{fontSize: 45}}>Add a Review</h1>
         <form onSubmit={ handleSubmit }>
         <div>
-          <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
-            type='text'
-            name='username'
-            id='inputID'
-            placeholder='Username:'
-            value={state.username}
-            onChange={handleChange}></input>
-        </div>
-        <br></br>
-        <div>
           <textarea  style={{fontFamily: 'cursive', fontSize: 30}}
             type='text'
             id='inputID'
