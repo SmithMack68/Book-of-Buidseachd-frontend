@@ -5,7 +5,7 @@ import ReviewCard from './ReviewCard'
 const ReviewDetail = ({ setReviews }) => {
     const [ review, setReview ]= useState({})
     const {id} = useParams()
-    // const navigate = useNavigate()
+   
 
     useEffect(() => {
         fetch(`/reviews/${id}`)

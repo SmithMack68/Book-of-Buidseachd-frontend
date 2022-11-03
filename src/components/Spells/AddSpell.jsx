@@ -101,7 +101,3 @@ const AddSpell = ({ addSpell }) => {
 
 export default AddSpell
 
-
-
-
-// style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}

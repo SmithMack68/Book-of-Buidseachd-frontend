@@ -5,7 +5,6 @@ import ReviewCard from '../Reviews/ReviewCard'
 
 const SpellDetail = () => {
     const [ spell, setSpell ] = useState({})
-  
     const params = useParams()
     const navigate = useNavigate()
 
@@ -14,11 +13,11 @@ const SpellDetail = () => {
       .then(resp => resp.json())
       .then(spell => setSpell(spell))
     }, [params.id])
-
-   
+  
    const handleNavigate = () => {
       navigate(`/spells/reviews/${params.id}`)
    }
+
 
    const deleteReview = (id) => {
     fetch(`/reviews/${id}`, {
@@ -42,7 +41,7 @@ const removeReview = (id) => {
   return (
       <div className='card-container' style={{ textAlign: 'center'}}>
         <h2 style={{fontFamily: "cursive", fontSize: 45}}>{ spell.name }</h2>
-        <img src={ spell.image } alt="A spell" height={300} width={400}/>
+        <img src={ spell.image } alt="A spell" height={300} width={400}/> 
         <p style={{fontFamily: "cursive", fontSize:30}}><>Description:</> { spell.short_description }</p>
         <p style={{fontFamily: "cursive", fontSize:30}}>Requirements: { spell.requirements }</p>
         <h2 style={{fontFamily: "cursive", fontSize:45}}>Incantation: { spell.incantation }</h2>
@@ -60,9 +59,7 @@ export default SpellDetail
 
 
 
-// const addReview = (review) => {
-//  setReviews([...reviews, review])
-//}
+
 
 
 
