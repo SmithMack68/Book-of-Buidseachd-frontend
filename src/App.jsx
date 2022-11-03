@@ -71,7 +71,6 @@ const App = () => {
           .then(spells => setSpells(spells))
       }
   
-
     useEffect(() => {
         fetch('/reviews')
         .then(resp => resp.json())
@@ -81,6 +80,13 @@ const App = () => {
 const addSpell = (spell) => {
   setSpells([...spells, spell])
 }
+
+
+const removeSpell = (id) => {
+  const updatedSpells = spells.filter(spell => spell.id !== id)
+  setSpells(updatedSpells)
+}
+
 
 const addReview = (review) => {
   setReviews([...reviews, review])
@@ -107,8 +113,8 @@ const updateReview = (updatedReview) => setReviews(current => {
       <Route path="/" element={<Home user={user} updateUser={updateUser} loggedIn={loggedIn}/>} />
       <Route path="/signup" element={<Signup updateUser={ updateUser} signup={signup}/>} />
       <Route path="/login" element={<Login updateUser={ updateUser} loggedIn={loggedIn} login={login}/>} />
-      <Route path="/spells" element={<SpellList spells={spells}/>} />
-      <Route path="/spells/:id" element={<SpellDetail />} />
+      <Route path="/spells" element={<SpellList spells={spells} removeSpell={removeSpell}/>} />
+      <Route path="/spells/:id" element={<SpellDetail removeSpell={removeSpell}/>} />
       <Route path="/spells/new" element={<AddSpell addSpell={ addSpell }/>} />
       <Route path="/spells/reviews/:spell_id" element={ <AddReviewToSpell addReview={addReview}/>} />
       <Route path="/reviews/:id/edit" element={ <EditReview updateReview={updateReview} setReviews={setReviews} user={user} loggedIn={loggedIn}/>} />
