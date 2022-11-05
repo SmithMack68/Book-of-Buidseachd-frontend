@@ -11,19 +11,17 @@ const EditReview = ({ updateReview, user, loggedIn }) => {
 
   const navigate = useNavigate()
   const [errors, setErrors] = useState([])
-  const {id} = useParams()
+  const params = useParams()
 
-  // useEffect(() => {
-  //   fetch(`/reviews/${id}`)
-  //   .then(resp => resp.json())
-  //   console.log(formData)
-  //   .then(setFormData)
-  // }, [id, formData])
-console.log(user)
-  useEffect((user) => {
-    debugger
-  }, [])
-
+  useEffect(() => {
+    fetch(`/reviews/${params.id}`)
+    .then(resp => resp.json())
+    .then(setFormData)
+  }, [params.id])
+// // console.log(user)
+// //   useEffect((user) => {
+// //     debugger
+// //   }, [])
 
   const handleChange = (e) => {
     setFormData({ ...formData, 
@@ -32,7 +30,7 @@ console.log(user)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`/reviews/${id}`,{
+    fetch(`/reviews/${params.id}`,{
       method: 'PATCH',
       headers,
       body:JSON.stringify(formData)
@@ -40,7 +38,7 @@ console.log(user)
     .then(resp => {
       if(resp.ok){
         resp.json().then(updateReview)
-        navigate(`/reviews/${id}`)
+        navigate(`/reviews/${params.id}`)
       } else {
         resp.json().then(data => setErrors(data))
       }
@@ -48,13 +46,12 @@ console.log(user)
   }
   if(errors) return <h1>{errors}</h1>
 
-
-
+ 
   return (
-    <div>
-      <h1 style={{fontSize: 45}}>Edit Review</h1>
+    <div className="edit-spell-container" style={{ textAlign: "center", fontFamily: 'cursive' }}>
+      <h1 style={{fontSize: 45, fontFamily: "cursive",textAlign: 'center'}}>Edit Review</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           <label style={{ fontSize: 30}}>Username: </label>
           <input
             type="text"
@@ -62,12 +59,12 @@ console.log(user)
             value={formData.username}
             onChange={handleChange}>
           </input>
-        </div>
+        </div> */}
         <div>
-        <label style={{ fontSize: 30}}>Comment: </label>
+        <label style={{ fontSize: 30}}></label>
           <textarea
             type="text"
-            rows='4'
+            rows='8'
             cols='50'
             name="comment"
             value={formData.comment}

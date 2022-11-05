@@ -7,10 +7,12 @@ import Login from './components/Authentication/Login';
 import SpellList from './components/Spells/SpellList';
 import SpellDetail from './components/Spells/SpellDetail';
 import AddSpell from './components/Spells/AddSpell'
+import EditSpell from './components/Spells/EditSpell';
 import EditReview from './components/Reviews/EditReview';
 import AddReviewToSpell from './components/Reviews/AddReviewToSpell';
 import ReviewList from './components/Reviews/ReviewList';
 import ReviewDetail from './components/Reviews/ReviewDetail';
+
 
 
 
@@ -81,11 +83,20 @@ const addSpell = (spell) => {
   setSpells([...spells, spell])
 }
 
-
 const removeSpell = (id) => {
   const updatedSpells = spells.filter(spell => spell.id !== id)
   setSpells(updatedSpells)
 }
+
+const updateSpell = (updatedSpell) => setSpells(current => {
+  return current.map(spell => {
+    if(spell.id === updatedSpell.id){
+      return updatedSpell
+    } else {
+      return spell
+    }
+  })
+})
 
 
 const addReview = (review) => {
@@ -104,7 +115,6 @@ const updateReview = (updatedReview) => setReviews(current => {
 })
 
 
-
  if(errors) return <h1>{errors}</h1>
   return (
    <Router>
@@ -116,6 +126,7 @@ const updateReview = (updatedReview) => setReviews(current => {
       <Route path="/spells" element={<SpellList spells={spells} removeSpell={removeSpell}/>} />
       <Route path="/spells/:id" element={<SpellDetail removeSpell={removeSpell}/>} />
       <Route path="/spells/new" element={<AddSpell addSpell={ addSpell }/>} />
+      <Route path="/spells/:id/edit" element={<EditSpell updateSpell={updateSpell}/>} />
       <Route path="/spells/reviews/:spell_id" element={ <AddReviewToSpell addReview={addReview}/>} />
       <Route path="/reviews/:id/edit" element={ <EditReview updateReview={updateReview} setReviews={setReviews} user={user} loggedIn={loggedIn}/>} />
       <Route path="/reviews" element={ <ReviewList reviews={reviews} />} />

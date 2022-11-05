@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ReviewCard from './ReviewCard'
 
-const ReviewDetail = ({ setReviews }) => {
+const ReviewDetail = () => {
     const [ review, setReview ]= useState({})
-    const {id} = useParams()
+    const params = useParams()
    
 
     useEffect(() => {
-        fetch(`/reviews/${id}`)
+        fetch(`/reviews/${params.id}`)
         .then(resp => resp.json())
-        .then(data => setReview(data))
-    }, [id])
+        .then(review => setReview(review))
+    }, [params.id])
 
 
 
 
   return (
     <div><h1>ReviewDetail</h1>
-    <h2><ReviewCard review={review} setReviews={setReviews}/></h2>
+    <ReviewCard review={review} />
     </div>
   )
 }
