@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { headers } from '../../Globals'
 
 const EditSpell = ({ updateSpell }) => {
-  // const [spell, setSpell] = useState(null)
   const [form, setForm] = useState({
     name: '',
     image: '',
@@ -12,7 +11,7 @@ const EditSpell = ({ updateSpell }) => {
     incantation: ''
   })
   const params = useParams()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(`/spells/${params.id}`)
@@ -36,7 +35,7 @@ const EditSpell = ({ updateSpell }) => {
     .then(resp => {
       if(resp.ok){
       resp.json().then(updateSpell)
-      // navigate(`/spells/${id}`)
+      navigate(`/spells/${params.id}`)
     }
   })
 

@@ -3,14 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { headers } from '../../Globals'
 
 
-const EditReview = ({ updateReview, user, loggedIn }) => {
+const EditReview = ({ updateReview }) => {
   const [formData, setFormData] = useState({
       username: '',
       comment: ''
   })
 
   const navigate = useNavigate()
-  const [errors, setErrors] = useState([])
+  // const [errors, setErrors] = useState([])
   const params = useParams()
 
   useEffect(() => {
@@ -18,10 +18,7 @@ const EditReview = ({ updateReview, user, loggedIn }) => {
     .then(resp => resp.json())
     .then(setFormData)
   }, [params.id])
-// // console.log(user)
-// //   useEffect((user) => {
-// //     debugger
-// //   }, [])
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, 
@@ -30,7 +27,7 @@ const EditReview = ({ updateReview, user, loggedIn }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`/reviews/${params.id}`,{
+    fetch(`/reviews/${params.id}`, {
       method: 'PATCH',
       headers,
       body:JSON.stringify(formData)
@@ -39,33 +36,26 @@ const EditReview = ({ updateReview, user, loggedIn }) => {
       if(resp.ok){
         resp.json().then(updateReview)
         navigate(`/reviews/${params.id}`)
-      } else {
-        resp.json().then(data => setErrors(data))
+      // } else {
+      //   resp.json().then(data => setErrors(data))
+      // }
       }
-    })
-  }
-  if(errors) return <h1>{errors}</h1>
+  })
+
+}
+  // if(errors) return <h1>{errors}</h1>
 
  
   return (
     <div className="edit-spell-container" style={{ textAlign: "center", fontFamily: 'cursive' }}>
       <h1 style={{fontSize: 45, fontFamily: "cursive",textAlign: 'center'}}>Edit Review</h1>
       <form onSubmit={handleSubmit}>
-        {/* <div>
-          <label style={{ fontSize: 30}}>Username: </label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}>
-          </input>
-        </div> */}
         <div>
-        <label style={{ fontSize: 30}}></label>
-          <textarea
+          <textarea style={{ fontFamily: 'cursive',fontSize: 20}}
             type="text"
             rows='8'
             cols='50'
+            id="inputID"
             name="comment"
             value={formData.comment}
             onChange={handleChange}>

@@ -41,7 +41,11 @@ body {
   
   /* background-color: rgb(126, 123, 123); */
 }
-
+.spell-card-container {
+  margin-left: 80px;
+  margin-right: 80px;
+  flex-wrap: wrap;
+}
 .card-container {
   margin-left: 80px;
   margin-right: 80px;

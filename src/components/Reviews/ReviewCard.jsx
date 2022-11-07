@@ -22,11 +22,12 @@ if (review.permitted){
 }
 
   return (
+    <div>
      <li key={index}>{review.username} : {review.comment}  &nbsp;&nbsp;
     {deleteReviewButton(review)}{editReviewButton(review)}
     {/* <><button key='edit' style={{fontFamily:'cursive'}} onClick={handleEdit}>Edit</button><button key='delete' onClick={() => deleteReview(review.id)} style={{fontFamily:'cursive'}}>Delete</button></>  */}
      </li>
-    
+     </div>
   )
 }
 

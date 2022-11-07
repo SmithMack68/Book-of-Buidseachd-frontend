@@ -127,8 +127,8 @@ const updateReview = (updatedReview) => setReviews(current => {
       <Route path="/spells/:id" element={<SpellDetail removeSpell={removeSpell}/>} />
       <Route path="/spells/new" element={<AddSpell addSpell={ addSpell }/>} />
       <Route path="/spells/:id/edit" element={<EditSpell updateSpell={updateSpell}/>} />
-      <Route path="/spells/reviews/:spell_id" element={ <AddReviewToSpell addReview={addReview}/>} />
-      <Route path="/reviews/:id/edit" element={ <EditReview updateReview={updateReview} setReviews={setReviews} user={user} loggedIn={loggedIn}/>} />
+      <Route path="/spells/:spell_id/reviews" element={ <AddReviewToSpell addReview={addReview}/>} />
+      <Route path="/reviews/:id/edit" element={ <EditReview updateReview={updateReview}  />} />
       <Route path="/reviews" element={ <ReviewList reviews={reviews} />} />
       <Route path="/reviews/:id" element={ <ReviewDetail setReviews={setReviews}/>} />
      </Routes>

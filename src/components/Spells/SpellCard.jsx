@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom'
 
 const SpellCard = ({spell, deleteSpell }) => {
     const navigate = useNavigate()
-    // const params = useParams()
+  
 
     const handleEdit = () => {
       navigate(`/spells/${spell.id}/edit`)
@@ -28,7 +28,6 @@ const SpellCard = ({spell, deleteSpell }) => {
         <p style={{fontFamily: "cursive", marginLeft: 30, marginRight:30}}>Description: {spell.short_description}</p>
         <button onClick={ () => navigate(`/spells/${spell.id}`) } style={{fontFamily: "cursive"}}>Details</button>
         {deleteSpellButton(spell)}{editSpellButton(spell)}
-        {/* <button onClick={() => deleteSpell(spell.id)} style={{fontFamily: 'cursive'}}>Delete Spell</button><button style={{fontFamily: 'cursive'}}>Edit Spell</button> */}
     </div>
   )
 }
