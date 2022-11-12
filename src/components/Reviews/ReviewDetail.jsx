@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import ReviewCard from './ReviewCard'
 
 const ReviewDetail = () => {
     const [ review, setReview ]= useState({})
     const params = useParams()
-   
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(`/reviews/${params.id}`)
@@ -17,8 +17,12 @@ const ReviewDetail = () => {
 
 
   return (
-    <div><h1>ReviewDetail</h1>
-    <ReviewCard review={review} />
+    <div style={{ textAlign: "center", fontFamily: 'cursive', fontSize: 20}}>
+      <h1 style={{textAlign: "center", fontFamily: 'cursive'}}>ReviewDetail</h1>
+      <ReviewCard review={review} />
+      <br></br>
+      <br></br>
+      <button onClick={() => navigate('/spells')} style={{fontFamily: 'cursive', fontSize: 20}}>Return to Spells</button>
     </div>
   )
 }
