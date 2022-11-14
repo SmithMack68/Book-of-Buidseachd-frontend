@@ -10,7 +10,7 @@ const Signup = ({ updateUser, signup }) => {
       age: '',
       paswword: ''
     })
-   //  const [ errors, setErrors ] = useState([])
+    const [ errors, setErrors ] = useState([])
     const navigate = useNavigate()
     const { username, creature_type, age, password } = form
 
@@ -38,9 +38,8 @@ const Signup = ({ updateUser, signup }) => {
                navigate('/')
                })
             }else {
-               resp.json().then(errors => {
-                  console.error(errors)
-               })
+               resp.json().then(json => setErrors(Object.entries(json.errors)))
+
             }
          })  
     }       
@@ -101,7 +100,7 @@ const Signup = ({ updateUser, signup }) => {
             <input style={{fontFamily: 'cursive', fontSize: 18}}type="submit" value="signup"/>
         </form>
         
-{/* { errors? errors.map(error => <div> {error[0]} {error[1]} {error[2]} {error[3]}</div>) :null } */}
+         { errors? errors.map(error => <div> {error[0]} {error[1]} </div>) :null }
     </div>
   )
 }
