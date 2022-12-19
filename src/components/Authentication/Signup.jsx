@@ -8,7 +8,7 @@ const Signup = ({ updateUser, signup }) => {
       username: '',
       creature_type: '',
       age: '',
-      paswword: ''
+      password: ''
     })
     const [ errors, setErrors ] = useState([])
     const navigate = useNavigate()
@@ -25,7 +25,7 @@ const Signup = ({ updateUser, signup }) => {
             password
       }
 
-      fetch('/users', {
+      fetch('/signup', {
          method: "POST",
          headers,
          body: JSON.stringify(user)
@@ -46,8 +46,10 @@ const Signup = ({ updateUser, signup }) => {
 
    
     const handleChange = (e) => {
-      setForm({...form,
-      [e.target.name]:e.target.value})
+         const { name, value } = e.target 
+         setForm({ ...form, [name]: value })
+      // setForm({...form,
+      // [e.target.name]:e.target.value})
     }
     
   return (
@@ -60,7 +62,7 @@ const Signup = ({ updateUser, signup }) => {
                id='inputID'
                placeholder='Username:'
                name="username" 
-               value={ username }
+               value={ form.username }
                onChange={handleChange}
                autoFocus={true}/>
             </div>
@@ -71,7 +73,7 @@ const Signup = ({ updateUser, signup }) => {
                id='inputID'
                placeholder='Class:'
                name="creature_type" 
-               value={ creature_type }
+               value={ form.creature_type }
                onChange={handleChange}
                autoFocus={true}/>
             </div>
@@ -82,7 +84,7 @@ const Signup = ({ updateUser, signup }) => {
                id='inputID'
                placeholder='Age:'
                name="age"
-               value={ age }
+               value={ form.age }
                onChange={handleChange}
                autoFocus={true}/>
             </div>
@@ -90,10 +92,10 @@ const Signup = ({ updateUser, signup }) => {
             <div>
                <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                type="password" 
-               id='inputID'
+               id='password'
                placeholder='Password:'
                name="password" 
-               value= { password }
+               value= {form.password}
                onChange= {handleChange}/>
             </div>
             <br></br>
