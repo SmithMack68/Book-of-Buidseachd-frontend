@@ -4,14 +4,13 @@ import { useNavigate} from 'react-router-dom'
 const SpellCard = ({spell, deleteSpell }) => {
     const navigate = useNavigate()
   
-
     const handleEdit = () => {
       navigate(`/spells/${spell.id}/edit`)
     }
 
     const deleteSpellButton = (spell) => {
       if (spell.permitted){
-      return <button onClick={() => deleteSpell(spell.id)} style={{fontFamily: 'cursive'}}>Delete Spell</button>
+      return <button key='delete' onClick={() => deleteSpell(spell.id)} style={{fontFamily: 'cursive'}}>Delete Spell</button>
     }
   }
    const editSpellButton = (spell) => {
