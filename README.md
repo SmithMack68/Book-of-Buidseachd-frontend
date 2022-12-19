@@ -10,7 +10,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Requirements
 
-yarn v 4.0.0
+* yarn v 4.0.0
+* react v 18.2.0
+* react-router-dom v 6.3.0
 
 ## Installation 
 
