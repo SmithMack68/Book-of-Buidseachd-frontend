@@ -61,7 +61,7 @@ const Login = ({ login }) => {
               <div>
                  <input style={{height: 35, width: 380, fontFamily: 'cursive', fontSize: 30}}
                  type="password" 
-                 id='inputID'
+                 id='password'
                  placeholder='Password:'
                  name="password" 
                  value= { password } 

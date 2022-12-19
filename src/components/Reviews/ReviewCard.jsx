@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const ReviewCard = ({ review, deleteReview, index }) => {
   const navigate = useNavigate()
+  
   const handleEdit = () => {
     navigate(`/reviews/${review.id}/edit`)
   }

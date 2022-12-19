@@ -38,6 +38,3 @@ export default SpellList
 
 
 
-// const CardContainer = styled.h1`
- //{/* <CardContainer> */}
- //{/* </CardContainer> */}

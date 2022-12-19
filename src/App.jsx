@@ -55,24 +55,27 @@ const App = () => {
 
   const signup = (user) => {
     setUser(user)
+    setCurrentUser(user)
     setLoggedIn(true)
   }
 
   const updateUser = (user) => {
+    setUser(user)
     setCurrentUser(user)
     setLoggedIn(true)
    }
   
   useEffect(() => {
     fetchSpells()
-  }, [])
+  }, [loggedIn])
 
  const fetchSpells = () => {
   fetch('/spells')
           .then(resp => resp.json())
           .then(spells => setSpells(spells))
       }
-  
+
+
     useEffect(() => {
         fetch('/reviews')
         .then(resp => resp.json())
