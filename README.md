@@ -1,4 +1,7 @@
 # The Book of Buidseachd
+![Book of Buidseachd](https://github.com/user-attachments/assets/401b4621-9a7e-4b04-9384-0335b1ecf474)
+
+
 
 The Book of Buidseachd (pronounced vootsch-och)
     This project is a digital spellbook. Buidseachd is the Scottish gaelic word for witchcraft.
