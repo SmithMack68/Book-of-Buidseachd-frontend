@@ -1,15 +1,25 @@
 # The Book of Buidseachd
 ![Book of Buidseachd](https://github.com/user-attachments/assets/401b4621-9a7e-4b04-9384-0335b1ecf474)
 
-
-
 The Book of Buidseachd (pronounced vootsch-och)
     This project is a digital spellbook. Buidseachd is the Scottish gaelic word for witchcraft.
     The idea is you can use spells, review them and create your own spells.
     It is your own personal grimoire.
+-------
+-------
+![1EB16A45-457C-4C3C-99D2-010D1265FB61_1_105_c](https://github.com/user-attachments/assets/26ae568b-b6d0-44e5-b98e-688772f5caf9)
+![4C6075D7-B543-4BF7-9EE2-CA1231378F74_1_105_c](https://github.com/user-attachments/assets/b9278b6f-fa80-4e54-b5bd-bad345f92b94)
+
+![6F204B46-B3DD-4922-A9C3-03839C6230C5_1_105_c](https://github.com/user-attachments/assets/8df7063d-9d40-432e-8d90-97dd1e654b04)
+![5BE2A7AF-6035-4928-B3EF-368F0E6FA336_1_105_c](https://github.com/user-attachments/assets/829c758f-7b9e-419a-b3d3-394ce115a525)
+
+
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Requirements
 
