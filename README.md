@@ -12,8 +12,17 @@ The Book of Buidseachd (pronounced vootsch-och, the Scottish word for witchcraft
 ![5BE2A7AF-6035-4928-B3EF-368F0E6FA336_1_105_c](https://github.com/user-attachments/assets/829c758f-7b9e-419a-b3d3-394ce115a525)
 
 
+-------
+## Demo Video
 
 
+[![Scottish Spell Book](https://img.youtube.com/vi/LDLwp0T5Seo/0.jpg)](https://www.youtube.com/watch?v=LDLwp0T5Seo)
+
+
+
+Click the video link and it will redirect you to the YouTube demo. **Note it will take you away from GitHub
+
+------
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
