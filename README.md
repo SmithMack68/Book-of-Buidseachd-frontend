@@ -22,7 +22,7 @@ Click the video link and it will redirect you to the YouTube demo. **Note it wil
 This is a full-stack application with a React frontend and Ruby on Rails backend. It uses the bcrypt gem to authenticate and and securely encrypt passwords via cookies and sessions IDs. Authenticated users have access to a personalized homepage to manage their spells and reviews. Enhanced security ensures only logged-in users can edit their own spells and reviews. It also has the future ability for admin permissions. All the images are uploaded to Cloudinary, which can increase conversions and speed up launches. This creates a much faster experience for consumers.
 -------
 ## Fun Facts
-All my incantations are derived from genuine Latin words or root words. I had a blast coming up with all of them. One of my favorite parts is the funny reviews, where I let my imagination run wild. There are even some spells that come with hysterical warnings and gruesome outcomes. 
+All my incantations are derived from genuine Latin words or root words. I had a blast coming up with all of them. One of my favorite parts is the funny reviews, where I let my imagination run wild. There are even some spells that come with hysterical warnings and gruesome outcomes. I deliberately used a simplistic and rustic aesthetic. I wanted to keep the sense of an older more traditional book, with the charm of a mom and pop store.
 
 ------
 ## Images
